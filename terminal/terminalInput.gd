@@ -1,0 +1,81 @@
+extends Control
+
+
+onready var text_input = $TextEdit
+onready var history = $history
+
+signal command(text)
+
+var test = ["Sweet","little","bumblee,","I","know","what","you","what","from","me,","do","pa","do","pa","do","da,","daa","do","pa","do","pa","do","da","daa"]
+var between_time = [.5,.5,.1,.2, .3, .2, .2 , .4, .4, .2, .2,.2,.2,.2,.3,.5,.2, .2, .2, .2, .2, .3, .4]
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$TextEdit.grab_focus()
+		
+
+
+func _process(delta):
+	
+	if Input.is_action_just_pressed("Enter"):
+		append_history(text_input.text)
+		process_command(text_input.text)
+		clear_input()
+
+
+		
+func process_command(t):
+	
+	t = t.split("\n")[0]
+	emit_signal("command", t)
+
+
+func clear_input():
+	text_input.text = ""
+	
+func clear_history():
+	history.text = ""
+
+func append_history(t, newline = false):
+	history.text += t
+	
+	if newline:
+		history.text += "\n"
+	
+	if history.text.count("\n") >= 8:
+		
+		var split = history.text.split("\n")
+		history.text = ""
+		
+		for s in range(1, split.size()-1):
+			history.text += split[s] + "\n"
+
+			
+
+
+func _on_Timer_timeout():
+	
+	if between_time.size() > 0:
+		$Timer.wait_time = between_time[0]
+		between_time.remove(0)
+	if test.size() > 0:
+		append_history(test[0], true)
+		test.remove(0)
+		$Timer.start()
+		return
+		
+	clear_history()
+	
+	
+func bee():
+	$AudioStreamPlayer.play()
+	$Timer.start()
+	
+		
+
+
+
+
+
+func _on_command_effects_bee():
+	bee()

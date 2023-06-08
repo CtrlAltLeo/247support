@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/mfbee.mp3-493c107e44002fa43bb8fda351b1ddfd.mp3str"
+
+[deps]
+
+source_file="res://mfbee/mfbee.mp3"
+dest_files=[ "res://.import/mfbee.mp3-493c107e44002fa43bb8fda351b1ddfd.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
