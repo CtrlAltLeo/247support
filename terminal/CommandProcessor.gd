@@ -18,9 +18,12 @@ func _on_terminalInput_command(text):
 	
 func validate_cmd(c):
 	
-	if c in commands:
-		var cmd = get_node(c)
-		cmd.activate()
+	var keyword = c.split(" ")[0]
+	var args = c.split(" ")
+	
+	if keyword in commands:
+		var cmd = get_node(keyword)
+		cmd.activate(args)
 		
 func terminal_print(msg):
 	emit_signal("print_terminal", msg, true)
