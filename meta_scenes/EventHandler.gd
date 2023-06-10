@@ -9,6 +9,9 @@ onready var Phone = get_node(PhonePath)
 export (NodePath) var TerminalPath
 onready var Terminal = get_node(TerminalPath)
 
+export (NodePath) var EntryManagerPath
+onready var EntryManager = get_node(EntryManagerPath)
+
 func _ready():
 	pass
 	
@@ -31,6 +34,16 @@ func new_task():
 	
 func computer_error():
 	Terminal.start_error()
+	
+	
+func missed_phone_call():
+	pass
+	
+func open_left_door():
+	EntryManager.open(0)
+	
+
+
 	
 
 

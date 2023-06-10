@@ -56,7 +56,7 @@ func append_history(t, newline = false):
 		history.text = ""
 		
 		for s in range(1, split.size()-1):
-			history.text += split[s] + "\n"
+			history.text +=  split[s] + "\n"
 
 			
 
@@ -95,4 +95,5 @@ func stop_error():
 	error = false
 	$"BsodJpg-699699462".hide()
 	clear_history()
+	clear_input()
 	insult()

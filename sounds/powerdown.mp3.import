@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/powerdown.mp3-02693bd81afb49339457daa0271a292e.mp3str"
+
+[deps]
+
+source_file="res://sounds/powerdown.mp3"
+dest_files=[ "res://.import/powerdown.mp3-02693bd81afb49339457daa0271a292e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

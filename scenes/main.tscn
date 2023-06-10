@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://terminal/CommandProcessor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://models/computer/old_computer.glb" type="PackedScene" id=2]
@@ -16,6 +16,10 @@
 [ext_resource path="res://meta_scenes/clickableArea.tscn" type="PackedScene" id=14]
 [ext_resource path="res://meta_scenes/EventHandler.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/arm.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/Door.tscn" type="PackedScene" id=17]
+[ext_resource path="res://terminal/commands/close.gd" type="Script" id=18]
+[ext_resource path="res://meta_scenes/EntryManager.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/ManPhone.tscn" type="PackedScene" id=20]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 10 )
@@ -73,10 +77,19 @@ viewport_path = NodePath("TerminalStack/ViewportContainer/Viewport")
 
 [sub_resource type="BoxShape" id=4]
 
-[sub_resource type="Environment" id=6]
-background_mode = 1
+[sub_resource type="CubeMesh" id=6]
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0.627451, 0.415686, 0.192157, 1 )
+
+[sub_resource type="PlaneMesh" id=8]
+
+[sub_resource type="CubeMesh" id=9]
+
+[sub_resource type="Environment" id=10]
 
 [node name="main" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.43046, 0 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.67, 1.187, 0.109565 )
@@ -85,7 +98,8 @@ script = ExtResource( 13 )
 
 [node name="SpotLight" type="SpotLight" parent="Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.21541e-08, 0, 1.18933 )
-spot_angle = 50.7155
+spot_range = 16.6153
+spot_angle = 38.0939
 
 [node name="TerminalStack" type="Control" parent="."]
 material = SubResource( 2 )
@@ -156,6 +170,14 @@ script = ExtResource( 9 )
 TaskMasterPath = NodePath("../../../TaskMaster")
 TerminalPath = NodePath("../../../ViewportContainer/Viewport/terminalInput")
 
+[node name="close" parent="TerminalStack/CommandProcessor" instance=ExtResource( 7 )]
+keyword = "close"
+
+[node name="command_effects" parent="TerminalStack/CommandProcessor/close" instance=ExtResource( 4 )]
+script = ExtResource( 18 )
+TerminalPath = NodePath("../../../ViewportContainer/Viewport/terminalInput")
+EntryManagerPath = NodePath("../../../../Objects/EntryManager")
+
 [node name="TaskMaster" parent="TerminalStack" instance=ExtResource( 6 )]
 
 [node name="Objects" type="Spatial" parent="."]
@@ -189,13 +211,85 @@ transform = Transform( 0.367339, 0, -0.339208, 0, 0.5, 0, 0.339208, 0, 0.367339,
 [node name="male" parent="Objects/arm/Skeleton" index="0"]
 transform = Transform( 0.999814, 0.0185927, -0.00514824, -0.006094, 0.0511743, -0.998671, -0.0183045, 0.998517, 0.0512781, 0, 0, 0 )
 
+[node name="StaticOffice" type="Spatial" parent="Objects"]
+
+[node name="Desk" type="MeshInstance" parent="Objects/StaticOffice"]
+transform = Transform( 1.41786, 0, 0, 0, 1, 0, 0, 0, 3.71467, -0.0821563, -1.09162, 0 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Objects/StaticOffice"]
+transform = Transform( 17.4403, 0, 0, 0, 1, 0, 0, 0, 19.3215, -13.3018, -2.94382, 0 )
+mesh = SubResource( 8 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Objects/StaticOffice"]
+transform = Transform( 15.1931, 0, 0, 0, 7.13979, 0, 0, 0, 1, -10.3406, 3.35061, 16.5368 )
+mesh = SubResource( 9 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="Objects/StaticOffice"]
+transform = Transform( 15.1931, 0, 0, 0, 7.13979, 0, 0, 0, 1, -10.3406, 3.35061, -18.4806 )
+mesh = SubResource( 9 )
+
+[node name="MeshInstance4" type="MeshInstance" parent="Objects/StaticOffice"]
+transform = Transform( -6.6411e-07, 0, -1, 0, 7.13979, 0, 23.8368, 0, -6.85799e-08, -25.5764, 3.35061, 0.055378 )
+mesh = SubResource( 9 )
+
+[node name="EntryManager" parent="Objects" instance=ExtResource( 19 )]
+
+[node name="doorLeft" parent="Objects/EntryManager" instance=ExtResource( 17 )]
+transform = Transform( -3.01908, 0, -2.63937e-07, 0, 3.01908, 0, 2.63937e-07, 0, -3.01908, -1.6398, -2.9555, 14.9985 )
+
+[node name="doorRight" parent="Objects/EntryManager" instance=ExtResource( 17 )]
+transform = Transform( 3.01908, 0, 0, 0, 3.01908, 0, 0, 0, 3.01908, -2.5264, -2.956, -16.9145 )
+
 [node name="EventHandler" parent="." instance=ExtResource( 15 )]
 TaskMasterPath = NodePath("../TerminalStack/TaskMaster")
 PhonePath = NodePath("../Objects/Phone")
 TerminalPath = NodePath("../TerminalStack/ViewportContainer/Viewport/terminalInput")
+EntryManagerPath = NodePath("../Objects/EntryManager")
+
+[node name="ManPhone" parent="." instance=ExtResource( 20 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6487, -1.03437, 11.9562 )
+
+[node name="DoorLeft" parent="ManPhone/pathNodes" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.32246 )
+
+[node name="DoorRigth" parent="ManPhone/pathNodes" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6245, 0, -34.6713 )
+
+[node name="deskFront" parent="ManPhone/pathNodes" index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00076, 0, -12.3846 )
+
+[node name="deskLeft" parent="ManPhone/pathNodes" index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.44004, 0, -9.63615 )
+
+[node name="deskRight" parent="ManPhone/pathNodes" index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.43825, 0, -16.8817 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 6 )
+environment = SubResource( 10 )
+
+[node name="SpotLight2" type="SpotLight" parent="."]
+transform = Transform( 1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -5.70494, 11.1121, 14.8719 )
+light_energy = 3.0
+shadow_color = Color( 0.341176, 0.0392157, 0.0392157, 1 )
+spot_range = 16.6153
+spot_angle = 38.0939
+
+[node name="SpotLight3" type="SpotLight" parent="."]
+transform = Transform( 1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -2.7808, 11.1121, -17.3926 )
+light_energy = 3.0
+shadow_color = Color( 0.341176, 0.0392157, 0.0392157, 1 )
+spot_range = 16.6153
+spot_angle = 38.0939
+
+[node name="SpotLight4" type="SpotLight" parent="."]
+transform = Transform( 1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -11.6857, 11.1121, -1.97243 )
+light_energy = 3.0
+shadow_color = Color( 0.341176, 0.0392157, 0.0392157, 1 )
+spot_range = 16.6153
+spot_angle = 38.0939
 
 [connection signal="command" from="TerminalStack/ViewportContainer/Viewport/terminalInput" to="TerminalStack/CommandProcessor" method="_on_terminalInput_command"]
 [connection signal="print_terminal" from="TerminalStack/CommandProcessor" to="TerminalStack/ViewportContainer/Viewport/terminalInput" method="append_history"]
@@ -209,3 +303,4 @@ environment = SubResource( 6 )
 
 [editable path="TerminalStack/CommandProcessor"]
 [editable path="Objects/arm"]
+[editable path="ManPhone"]
