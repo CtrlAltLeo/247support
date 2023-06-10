@@ -12,3 +12,7 @@ func stop_ring():
 	
 func _ready():
 	ring()
+
+
+func _on_clickableArea_clicked():
+	pass

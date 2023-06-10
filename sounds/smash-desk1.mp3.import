@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/smash-desk1.mp3-812d2ed8d2144af89bc6e76b258a12b4.mp3str"
+
+[deps]
+
+source_file="res://sounds/smash-desk1.mp3"
+dest_files=[ "res://.import/smash-desk1.mp3-812d2ed8d2144af89bc6e76b258a12b4.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
