@@ -18,6 +18,10 @@ config/name="247support"
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+DATA="*res://orphaned_scripts/DATA.gd"
+
 [input]
 
 Enter={

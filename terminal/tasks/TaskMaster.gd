@@ -2,16 +2,15 @@ extends Node2D
 
 var taskInstance = load("res://terminal/tasks/task.tscn")
 
-func _ready():
-	add_task(0, "jim")
-	add_task(1, "bo")
 
+#cmd enums are 0: psword, 1: remove accout 2 access
 func add_task(cmd_enum, args):
 	
 	var t = taskInstance.instance()
 	
 	t._type = cmd_enum
 	t.args = args
+	t.connect("complete", self, "task_complete")
 	
 	add_child(t)
 	
@@ -27,8 +26,9 @@ func get_task_by_cmd(task_cmd):
 			
 	return task_arr
 	
-	
-	
+func task_complete():
+	print("nice!")
+		
 
 	
 	

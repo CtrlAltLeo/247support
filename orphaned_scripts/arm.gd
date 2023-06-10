@@ -3,5 +3,9 @@ extends Spatial
 
 func hit():
 	self.show()
-	$AnimationPlayer.play("whack")
+	$AnimationPlayer.play("RESET")
 	$smash.play()
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	self.hide()

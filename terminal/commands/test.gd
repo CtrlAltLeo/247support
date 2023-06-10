@@ -1,7 +1,8 @@
 extends Node2D
 
 signal test_task(cmd, args)
+signal error
 
 func effect(args):
 	
-	emit_signal("test_task", 1 , "testargs")
+	emit_signal("error")

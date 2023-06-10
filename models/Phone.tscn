@@ -71,3 +71,5 @@ anims/ring = SubResource( 1 )
 
 [node name="phone" type="AudioStreamPlayer" parent="." index="6"]
 stream = ExtResource( 3 )
+
+[node name="voice" type="AudioStreamPlayer" parent="." index="7"]

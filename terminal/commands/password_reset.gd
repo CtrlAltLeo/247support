@@ -1,6 +1,10 @@
 extends Node2D
 
-onready var TaskMaster = get_viewport().get_child(0).get_node("TerminalStack/TaskMaster")
+export (NodePath) var TaskMasterPath
+export (NodePath) var TerminalPath
+
+onready var TaskMaster = get_node(TaskMasterPath)
+onready var terminal = get_node(TerminalPath)
 
 func effect(args):
 	
@@ -12,6 +16,9 @@ func effect(args):
 	for t in tasks:
 		if t.args == args[1]:
 			t.complete()
+			terminal.append_history("Operation on "+args[1]+" successful." ,true)
 			return
+			
+	terminal.insult()
 	
 	#Send terminal insult

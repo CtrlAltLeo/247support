@@ -1,5 +1,6 @@
 extends Node2D
 
+signal complete
 
 export var command = ""
 export var args = ""
@@ -20,7 +21,7 @@ func _ready():
 		command = "rmvusr"
 		
 func complete():
-	print("You win!")
+	emit_signal("complete")
 	queue_free()
 	
 		

@@ -8,11 +8,16 @@ func ring():
 	$AnimationPlayer.play("ring")
 
 func stop_ring():
-	pass
+	ringing = false
+	$phone.stop()
+	$AnimationPlayer.play("RESET")
+	$voice.play()
 	
 func _ready():
-	ring()
-
+	pass
 
 func _on_clickableArea_clicked():
-	pass
+	stop_ring()
+
+func new_voice(filepath):
+	$voice.stream = load("res://sounds/phoneAudio/"+filepath+".mp3")
