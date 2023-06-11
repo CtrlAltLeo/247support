@@ -2,6 +2,7 @@ extends Spatial
 
 
 func hit():
+	$AnimationPlayer.stop()
 	self.show()
 	$AnimationPlayer.play("RESET")
 	$smash.play()

@@ -126,7 +126,7 @@ bones/6/enabled = true
 bones/6/bound_children = [  ]
 
 [node name="male" type="MeshInstance" parent="Skeleton"]
-transform = Transform( 0.999814, 0.0185927, -0.00514824, -0.006094, 0.0511743, -0.998671, -0.0183045, 0.998517, 0.051278, 0, 0, 0 )
+transform = Transform( 0.999814, 0.0185927, -0.00514824, -0.006094, 0.0511743, -0.998671, -0.0183045, 0.998517, 0.0512781, 0, 0, 0 )
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
 

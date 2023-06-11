@@ -3,10 +3,13 @@ extends Spatial
 #Behaviors
 #- If he's standing by the phone, don't pick it up
 #- He might just run between doors if they're both open
-#- vent? 
+#-  
+#
+#
 
 
-const SPEED = 0.5
+
+const SPEED = 0.2
 
 var currentLocation = 0
 var targetLocation = 0
@@ -31,7 +34,8 @@ func run_between(A, B):
 	run_to(B)
 	
 func _ready():
-	run_between(DATA.ENTRY.DOORLEFT, 3)
+	teleport_to(DATA.ENTRY.DOORLEFT)
+	run_to(3)
 	
 func get_pathnode(A):
 	return $pathNodes.get_child(A)
