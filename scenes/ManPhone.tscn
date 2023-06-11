@@ -24,3 +24,5 @@ mesh = SubResource( 1 )
 [node name="deskLeft" type="Spatial" parent="pathNodes"]
 
 [node name="deskRight" type="Spatial" parent="pathNodes"]
+
+[node name="LurkTimer" type="Timer" parent="."]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/hiyyyya_2021_05_04_22_13_29_802.mp3-6b527ab37d7807ebd30522a18b464ddf.mp3str"
+
+[deps]
+
+source_file="res://sounds/non-task-voices/hiyyyya_2021_05_04_22_13_29_802.mp3"
+dest_files=[ "res://.import/hiyyyya_2021_05_04_22_13_29_802.mp3-6b527ab37d7807ebd30522a18b464ddf.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

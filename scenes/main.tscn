@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://terminal/CommandProcessor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://models/computer/old_computer.glb" type="PackedScene" id=2]
@@ -20,6 +20,12 @@
 [ext_resource path="res://terminal/commands/close.gd" type="Script" id=18]
 [ext_resource path="res://meta_scenes/EntryManager.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/ManPhone.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/main.gd" type="Script" id=21]
+[ext_resource path="res://scenes/LightManager.gd" type="Script" id=22]
+[ext_resource path="res://terminal/commands/light.gd" type="Script" id=23]
+[ext_resource path="res://images/sticky1.png" type="Texture" id=24]
+[ext_resource path="res://terminal/commands/help.gd" type="Script" id=25]
+[ext_resource path="res://images/brimlessstikcer.png" type="Texture" id=26]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 10 )
@@ -90,6 +96,7 @@ albedo_color = Color( 0.627451, 0.415686, 0.192157, 1 )
 
 [node name="main" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.43046, 0 )
+script = ExtResource( 21 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.67, 1.187, 0.109565 )
@@ -178,6 +185,21 @@ script = ExtResource( 18 )
 TerminalPath = NodePath("../../../ViewportContainer/Viewport/terminalInput")
 EntryManagerPath = NodePath("../../../../Objects/EntryManager")
 
+[node name="light" parent="TerminalStack/CommandProcessor" instance=ExtResource( 7 )]
+keyword = "light"
+
+[node name="command_effects" parent="TerminalStack/CommandProcessor/light" instance=ExtResource( 4 )]
+script = ExtResource( 23 )
+TerminalPath = NodePath("../../../ViewportContainer/Viewport/terminalInput")
+LightManagerPath = NodePath("../../../../Objects/LightManager")
+
+[node name="help" parent="TerminalStack/CommandProcessor" instance=ExtResource( 7 )]
+keyword = "help"
+
+[node name="command_effects" parent="TerminalStack/CommandProcessor/help" instance=ExtResource( 4 )]
+script = ExtResource( 25 )
+TerminalPath = NodePath("../../../ViewportContainer/Viewport/terminalInput")
+
 [node name="TaskMaster" parent="TerminalStack" instance=ExtResource( 6 )]
 
 [node name="Objects" type="Spatial" parent="."]
@@ -223,6 +245,10 @@ material/0 = SubResource( 7 )
 transform = Transform( 17.4403, 0, 0, 0, 1, 0, 0, 0, 19.3215, -13.3018, -2.94382, 0 )
 mesh = SubResource( 8 )
 
+[node name="MeshInstance5" type="MeshInstance" parent="Objects/StaticOffice"]
+transform = Transform( 17.4403, 0, 0, 0, -1, 1.68914e-06, 0, -8.74228e-08, -19.3215, -13.3018, 9.1393, 0 )
+mesh = SubResource( 8 )
+
 [node name="MeshInstance2" type="MeshInstance" parent="Objects/StaticOffice"]
 transform = Transform( 15.1931, 0, 0, 0, 7.13979, 0, 0, 0, 1, -10.3406, 3.35061, 16.5368 )
 mesh = SubResource( 9 )
@@ -235,6 +261,16 @@ mesh = SubResource( 9 )
 transform = Transform( -6.6411e-07, 0, -1, 0, 7.13979, 0, 23.8368, 0, -6.85799e-08, -25.5764, 3.35061, 0.055378 )
 mesh = SubResource( 9 )
 
+[node name="stickynote" type="Sprite3D" parent="Objects/StaticOffice"]
+transform = Transform( 0.000879209, 0.00505223, 0.996195, 0.0100494, 0.0577472, -0.0871557, -0.0572109, 0.0102213, -4.35451e-08, 0.887926, 1.51661, -0.51671 )
+texture = ExtResource( 24 )
+
+[node name="brimsticker" type="Sprite3D" parent="Objects/StaticOffice"]
+transform = Transform( 0.10526, 0, 0, 0, 0.10526, 0, 0, 0, 1, 0.439146, 0.711665, -1.2532 )
+modulate = Color( 0.792157, 0.776471, 0.603922, 1 )
+opacity = 0.8
+texture = ExtResource( 26 )
+
 [node name="EntryManager" parent="Objects" instance=ExtResource( 19 )]
 
 [node name="doorLeft" parent="Objects/EntryManager" instance=ExtResource( 17 )]
@@ -243,17 +279,36 @@ transform = Transform( -3.01908, 0, -2.63937e-07, 0, 3.01908, 0, 2.63937e-07, 0,
 [node name="doorRight" parent="Objects/EntryManager" instance=ExtResource( 17 )]
 transform = Transform( 3.01908, 0, 0, 0, 3.01908, 0, 0, 0, 3.01908, -2.5264, -2.956, -16.9145 )
 
+[node name="LightManager" type="Spatial" parent="Objects"]
+script = ExtResource( 22 )
+
+[node name="left" type="SpotLight" parent="Objects/LightManager"]
+transform = Transform( 1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, -3.59989e-21, -4.37114e-08, -5.70494, 11.1121, 14.8719 )
+light_energy = 3.0
+shadow_color = Color( 0.341176, 0.0392157, 0.0392157, 1 )
+spot_range = 16.6153
+spot_angle = 38.0939
+
+[node name="right" type="SpotLight" parent="Objects/LightManager"]
+transform = Transform( 1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, -3.59989e-21, -4.37114e-08, -2.7808, 11.1121, -17.3926 )
+light_energy = 3.0
+shadow_color = Color( 0.341176, 0.0392157, 0.0392157, 1 )
+spot_range = 16.6153
+spot_angle = 38.0939
+
 [node name="EventHandler" parent="." instance=ExtResource( 15 )]
 TaskMasterPath = NodePath("../TerminalStack/TaskMaster")
 PhonePath = NodePath("../Objects/Phone")
 TerminalPath = NodePath("../TerminalStack/ViewportContainer/Viewport/terminalInput")
 EntryManagerPath = NodePath("../Objects/EntryManager")
+LightManagerPath = NodePath("../Objects/LightManager")
 
 [node name="ManPhone" parent="." instance=ExtResource( 20 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6487, -1.03437, 11.9562 )
+EntryManagerPath = NodePath("../Objects/EntryManager")
 
 [node name="DoorLeft" parent="ManPhone/pathNodes" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.32246 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.352039, 0, 8.8657 )
 
 [node name="DoorRigth" parent="ManPhone/pathNodes" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6245, 0, -34.6713 )
@@ -269,27 +324,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.43825, 0, -16.8817 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 10 )
-
-[node name="SpotLight2" type="SpotLight" parent="."]
-transform = Transform( 1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -5.70494, 11.1121, 14.8719 )
-light_energy = 3.0
-shadow_color = Color( 0.341176, 0.0392157, 0.0392157, 1 )
-spot_range = 16.6153
-spot_angle = 38.0939
-
-[node name="SpotLight3" type="SpotLight" parent="."]
-transform = Transform( 1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -2.7808, 11.1121, -17.3926 )
-light_energy = 3.0
-shadow_color = Color( 0.341176, 0.0392157, 0.0392157, 1 )
-spot_range = 16.6153
-spot_angle = 38.0939
-
-[node name="SpotLight4" type="SpotLight" parent="."]
-transform = Transform( 1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -11.6857, 11.1121, -1.97243 )
-light_energy = 3.0
-shadow_color = Color( 0.341176, 0.0392157, 0.0392157, 1 )
-spot_range = 16.6153
-spot_angle = 38.0939
 
 [connection signal="command" from="TerminalStack/ViewportContainer/Viewport/terminalInput" to="TerminalStack/CommandProcessor" method="_on_terminalInput_command"]
 [connection signal="print_terminal" from="TerminalStack/CommandProcessor" to="TerminalStack/ViewportContainer/Viewport/terminalInput" method="append_history"]

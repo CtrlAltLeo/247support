@@ -6,3 +6,6 @@ func close(id):
 	
 func open(id):
 	get_child(id).open()
+
+func is_open(id):
+	return get_child(id).open

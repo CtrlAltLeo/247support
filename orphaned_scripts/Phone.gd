@@ -43,7 +43,7 @@ func _on_clickableArea_clicked():
 	pick_up()
 
 func new_voice(filepath):
-	$voice.stream = load("res://sounds/phoneAudio/"+filepath+".mp3")
+	$voice.stream = load(filepath)
 
 
 func _on_voice_finished():
