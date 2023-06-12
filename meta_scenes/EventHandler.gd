@@ -15,6 +15,11 @@ onready var EntryManager = get_node(EntryManagerPath)
 export (NodePath) var LightManagerPath
 onready var LightManager = get_node(LightManagerPath)
 
+export (NodePath) var  ManphonePath
+onready var Manphone = get_node(ManphonePath)
+
+
+
 
 func _ready():
 	pass
@@ -63,10 +68,15 @@ func cut_lights():
 
 
 func _on_Timer_timeout():
-	phone_call("welcome")
 	open_door(DATA.ENTRY.DOORLEFT)
 
 
 func _on_errorTimer_timeout():
 	computer_error()
 	cut_lights()
+	Manphone.run_to(DATA.ENTRY.DESKFRONT)
+
+
+func _on_manJump_timeout():
+	phone_call("welcome")
+	Manphone.run_between(DATA.ENTRY.DOORRIGHT, DATA.ENTRY.DESKRIGHT)

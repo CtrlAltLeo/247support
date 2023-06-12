@@ -302,9 +302,10 @@ PhonePath = NodePath("../Objects/Phone")
 TerminalPath = NodePath("../TerminalStack/ViewportContainer/Viewport/terminalInput")
 EntryManagerPath = NodePath("../Objects/EntryManager")
 LightManagerPath = NodePath("../Objects/LightManager")
+ManphonePath = NodePath("../ManPhone")
 
 [node name="ManPhone" parent="." instance=ExtResource( 20 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6487, -1.03437, 11.9562 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6487, -2.8429, 11.9562 )
 EntryManagerPath = NodePath("../Objects/EntryManager")
 
 [node name="DoorLeft" parent="ManPhone/pathNodes" index="0"]
@@ -314,13 +315,16 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.352039, 0, 8.8657 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6245, 0, -34.6713 )
 
 [node name="deskFront" parent="ManPhone/pathNodes" index="3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00076, 0, -12.3846 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90432, 0, -6.36664 )
 
 [node name="deskLeft" parent="ManPhone/pathNodes" index="4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.44004, 0, -9.63615 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.22787, 0, -8.57529 )
 
 [node name="deskRight" parent="ManPhone/pathNodes" index="5"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.43825, 0, -16.8817 )
+
+[node name="player" parent="ManPhone/pathNodes" index="6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.85787, 1.90735e-06, -11.86 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 10 )

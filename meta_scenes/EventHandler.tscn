@@ -11,9 +11,14 @@ one_shot = true
 autostart = true
 
 [node name="errorTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 7.0
 one_shot = true
+autostart = true
+
+[node name="manJump" type="Timer" parent="."]
+wait_time = 5.0
 autostart = true
 
 [connection signal="timeout" from="phoneTimer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="errorTimer" to="." method="_on_errorTimer_timeout"]
+[connection signal="timeout" from="manJump" to="." method="_on_manJump_timeout"]

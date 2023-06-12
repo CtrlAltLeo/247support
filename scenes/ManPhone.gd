@@ -11,12 +11,12 @@ export (NodePath) var EntryManagerPath
 onready var EntryMananger = get_node(EntryManagerPath)
 
 
-const SPEED = 0.2
+const SPEED = 0.3
 
 var currentLocation = 0
 var targetLocation = 0
 
-onready var Character = $MeshInstance
+onready var Character = $manphone1
 
 func check_entry(id):
 	return EntryMananger.is_open(id)
@@ -37,8 +37,7 @@ func run_between(A, B):
 	run_to(B)
 	
 func _ready():
-	teleport_to(DATA.ENTRY.DOORLEFT)
-	run_to(DATA.ENTRY.DESKLEFT)
+	pass
 	
 	
 func get_pathnode(A):
@@ -46,10 +45,16 @@ func get_pathnode(A):
 
 func _process(delta):
 	
+	var to_player = get_pathnode(DATA.ENTRY.PLAYER).translation - translation
+	Character.rotation.y = atan2(to_player.x, to_player.z) + PI
+	
 	
 	if targetLocation != currentLocation:
-		Character.translation += SPEED*($pathNodes.get_child(targetLocation).translation - $pathNodes.get_child(currentLocation).translation).normalized()
 		
+		var dir = ($pathNodes.get_child(targetLocation).translation - $pathNodes.get_child(currentLocation).translation).normalized()
+		
+		Character.translation += SPEED*dir
+		Character.rotation.y = atan2(dir.x, dir.z)
 	
 	if Character.translation.distance_to($pathNodes.get_child(targetLocation).translation) < 1:
 		currentLocation = targetLocation
