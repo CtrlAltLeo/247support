@@ -305,26 +305,35 @@ LightManagerPath = NodePath("../Objects/LightManager")
 ManphonePath = NodePath("../ManPhone")
 
 [node name="ManPhone" parent="." instance=ExtResource( 20 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6487, -2.8429, 11.9562 )
 EntryManagerPath = NodePath("../Objects/EntryManager")
+SPEED = 0.2
+
+[node name="pathNodes" parent="ManPhone" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.70503, 0 )
 
 [node name="DoorLeft" parent="ManPhone/pathNodes" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.352039, 0, 8.8657 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77681, 0, 13.898 )
 
 [node name="DoorRigth" parent="ManPhone/pathNodes" index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6245, 0, -34.6713 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.754792, 0, -16.4371 )
+
+[node name="middle" parent="ManPhone/pathNodes" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.18245, 0, 0.303932 )
 
 [node name="deskFront" parent="ManPhone/pathNodes" index="3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90432, 0, -6.36664 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.03924, 0, 6.00708 )
 
 [node name="deskLeft" parent="ManPhone/pathNodes" index="4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.22787, 0, -8.57529 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.93112, 0, 5.87678 )
 
 [node name="deskRight" parent="ManPhone/pathNodes" index="5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.43825, 0, -16.8817 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.22693, 0, -4.87505 )
 
 [node name="player" parent="ManPhone/pathNodes" index="6"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.85787, 1.90735e-06, -11.86 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.57797, 1.90735e-06, 0.0658216 )
+
+[node name="manphone1" parent="ManPhone" index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.892, -2.68619, 11.455 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 10 )

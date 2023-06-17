@@ -708,7 +708,7 @@ transform = Transform( 1, 0, 0, 0, -6.99382e-08, -1.6, 0, 1, -4.37114e-08, 0, 2.
 
 [node name="DoorRigth" type="Spatial" parent="pathNodes"]
 
-[node name="vent" type="Spatial" parent="pathNodes"]
+[node name="middle" type="Spatial" parent="pathNodes"]
 
 [node name="deskFront" type="Spatial" parent="pathNodes"]
 

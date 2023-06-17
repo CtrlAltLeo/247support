@@ -19,8 +19,6 @@ export (NodePath) var  ManphonePath
 onready var Manphone = get_node(ManphonePath)
 
 
-
-
 func _ready():
 	pass
 	
@@ -68,15 +66,17 @@ func cut_lights():
 
 
 func _on_Timer_timeout():
-	open_door(DATA.ENTRY.DOORLEFT)
+	pass
 
 
 func _on_errorTimer_timeout():
-	computer_error()
-	cut_lights()
-	Manphone.run_to(DATA.ENTRY.DESKFRONT)
+	pass
 
 
 func _on_manJump_timeout():
 	phone_call("welcome")
-	Manphone.run_between(DATA.ENTRY.DOORRIGHT, DATA.ENTRY.DESKRIGHT)
+	Manphone.teleport_to(DATA.ENTRY.DOORLEFT)
+	Manphone.add_to_path(DATA.ENTRY.MIDDLE)
+	Manphone.add_to_path(DATA.ENTRY.DOORRIGHT)
+
+

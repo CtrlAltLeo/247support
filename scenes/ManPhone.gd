@@ -10,13 +10,16 @@ extends Spatial
 export (NodePath) var EntryManagerPath
 onready var EntryMananger = get_node(EntryManagerPath)
 
-
-const SPEED = 0.3
+export var SPEED = 0.3
 
 var currentLocation = 0
 var targetLocation = 0
 
+var path = []
+
 onready var Character = $manphone1
+
+signal arrival
 
 func check_entry(id):
 	return EntryMananger.is_open(id)
@@ -36,9 +39,9 @@ func run_between(A, B):
 	teleport_to(A)
 	run_to(B)
 	
-func _ready():
-	pass
-	
+func add_to_path(A):
+	path.insert(0, A)
+	targetLocation = path[path.size() - 1]
 	
 func get_pathnode(A):
 	return $pathNodes.get_child(A)
@@ -51,12 +54,25 @@ func _process(delta):
 	
 	if targetLocation != currentLocation:
 		
-		var dir = ($pathNodes.get_child(targetLocation).translation - $pathNodes.get_child(currentLocation).translation).normalized()
+		var dir = Vector3()
+			
+		if path.size() == 0:
+			dir = ($pathNodes.get_child(targetLocation).translation - $pathNodes.get_child(currentLocation).translation).normalized()
+			
+			if Character.translation.distance_to($pathNodes.get_child(targetLocation).translation) < 1:
+				currentLocation = targetLocation
+				emit_signal("arrival")
+		else:	
+			dir = (get_pathnode(path[0]).translation - get_pathnode(currentLocation).translation).normalized()
+			
+			
+				
 		
 		Character.translation += SPEED*dir
 		Character.rotation.y = atan2(dir.x, dir.z)
 	
-	if Character.translation.distance_to($pathNodes.get_child(targetLocation).translation) < 1:
-		currentLocation = targetLocation
+	Character.translation.y = -2.85
+
+			
 		
 	
