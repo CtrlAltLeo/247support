@@ -1,6 +1,7 @@
 extends Node2D
 
 signal print_terminal(txt, newline)
+signal command(cmd)
 
 var commands = []
 
@@ -24,6 +25,9 @@ func validate_cmd(c):
 	if keyword in commands:
 		var cmd = get_node(keyword)
 		cmd.activate(args)
+		print(keyword)
+		emit_signal("command", keyword)
+		
 		
 func terminal_print(msg):
 	emit_signal("print_terminal", msg, true)

@@ -15,5 +15,4 @@ var phoneAudio = {
 	
 	"welcome": "res://sounds/non-task-voices/banana-phone.mp3"
 	
-	
 }

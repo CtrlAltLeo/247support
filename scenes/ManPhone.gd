@@ -20,6 +20,7 @@ var path = []
 onready var Character = $manphone1
 
 signal arrival
+signal pathover
 
 func check_entry(id):
 	return EntryMananger.is_open(id)
@@ -48,8 +49,8 @@ func get_pathnode(A):
 
 func _process(delta):
 	
-	var to_player = get_pathnode(DATA.ENTRY.PLAYER).translation - translation
-	Character.rotation.y = atan2(to_player.x, to_player.z) + PI
+	var to_player = get_pathnode(DATA.ENTRY.PLAYER).translation - Character.translation
+	Character.rotation.y = atan2(to_player.x, to_player.z)
 	
 	
 	if targetLocation != currentLocation:
@@ -57,7 +58,7 @@ func _process(delta):
 		var dir = Vector3()
 			
 		if path.size() == 0:
-			dir = ($pathNodes.get_child(targetLocation).translation - translation).normalized()
+			dir = (get_pathnode(targetLocation).translation - get_pathnode(currentLocation)).normalized()
 			
 			if Character.translation.distance_to($pathNodes.get_child(targetLocation).translation) < 1:
 				currentLocation = targetLocation
@@ -66,10 +67,14 @@ func _process(delta):
 		else:	
 			dir = (get_pathnode(path[0]).translation - get_pathnode(currentLocation).translation).normalized()
 			
-			if Character.translation.distance_to(get_pathnode(path[0]).translation) < 5:
+			if Character.translation.distance_to(get_pathnode(path[0]).translation) < 3:
 				
 				if path[0] == targetLocation:
 					currentLocation = targetLocation
+					path.clear()
+					emit_signal("pathover")
+				else:
+					currentLocation = path[0]
 				
 				path.pop_front() 
 				print("pop")

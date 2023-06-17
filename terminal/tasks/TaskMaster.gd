@@ -29,7 +29,3 @@ func get_task_by_cmd(task_cmd):
 func task_complete():
 	print("nice!")
 		
-
-	
-	
-	
