@@ -92,7 +92,7 @@ albedo_color = Color( 0.627451, 0.415686, 0.192157, 1 )
 
 [sub_resource type="CubeMesh" id=9]
 
-[sub_resource type="Environment" id=10]
+[sub_resource type="CapsuleMesh" id=10]
 
 [node name="main" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.43046, 0 )
@@ -203,6 +203,7 @@ TerminalPath = NodePath("../../../ViewportContainer/Viewport/terminalInput")
 [node name="TaskMaster" parent="TerminalStack" instance=ExtResource( 6 )]
 
 [node name="Objects" type="Spatial" parent="."]
+visible = false
 
 [node name="old_computer" parent="Objects" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0376053, 0, 0.350441 )
@@ -314,11 +315,22 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.70503, 0 )
 [node name="DoorLeft" parent="ManPhone/pathNodes" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77681, 0, 13.898 )
 
+[node name="MeshInstance2" type="MeshInstance" parent="ManPhone/pathNodes/DoorLeft" index="0"]
+mesh = SubResource( 10 )
+skeleton = NodePath("../../DoorRigth")
+
 [node name="DoorRigth" parent="ManPhone/pathNodes" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.754792, 0, -16.4371 )
 
+[node name="MeshInstance" type="MeshInstance" parent="ManPhone/pathNodes/DoorRigth" index="0"]
+mesh = SubResource( 10 )
+
 [node name="middle" parent="ManPhone/pathNodes" index="2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.18245, 0, 0.303932 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="ManPhone/pathNodes/middle" index="0"]
+mesh = SubResource( 10 )
+skeleton = NodePath("../../DoorRigth")
 
 [node name="deskFront" parent="ManPhone/pathNodes" index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.03924, 0, 6.00708 )
@@ -333,10 +345,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.22693, 0, -4.87505 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.57797, 1.90735e-06, 0.0658216 )
 
 [node name="manphone1" parent="ManPhone" index="3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.892, -2.68619, 11.455 )
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 10 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.686, 0 )
 
 [connection signal="command" from="TerminalStack/ViewportContainer/Viewport/terminalInput" to="TerminalStack/CommandProcessor" method="_on_terminalInput_command"]
 [connection signal="print_terminal" from="TerminalStack/CommandProcessor" to="TerminalStack/ViewportContainer/Viewport/terminalInput" method="append_history"]

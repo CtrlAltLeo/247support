@@ -40,8 +40,8 @@ func run_between(A, B):
 	run_to(B)
 	
 func add_to_path(A):
-	path.insert(0, A)
-	targetLocation = path[path.size() - 1]
+	path.append(A)
+	targetLocation = A
 	
 func get_pathnode(A):
 	return $pathNodes.get_child(A)
@@ -57,17 +57,24 @@ func _process(delta):
 		var dir = Vector3()
 			
 		if path.size() == 0:
-			dir = ($pathNodes.get_child(targetLocation).translation - $pathNodes.get_child(currentLocation).translation).normalized()
+			dir = ($pathNodes.get_child(targetLocation).translation - translation).normalized()
 			
 			if Character.translation.distance_to($pathNodes.get_child(targetLocation).translation) < 1:
 				currentLocation = targetLocation
+				print("here")
 				emit_signal("arrival")
 		else:	
 			dir = (get_pathnode(path[0]).translation - get_pathnode(currentLocation).translation).normalized()
 			
-			
+			if Character.translation.distance_to(get_pathnode(path[0]).translation) < 5:
 				
-		
+				if path[0] == targetLocation:
+					currentLocation = targetLocation
+				
+				path.pop_front() 
+				print("pop")
+				
+
 		Character.translation += SPEED*dir
 		Character.rotation.y = atan2(dir.x, dir.z)
 	

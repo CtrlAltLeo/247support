@@ -13,5 +13,6 @@ func _input(event):
 		rotation_degrees.y =  clamp(self.rotation_degrees.y, 50, 120 )
 		
 		if abs(event.relative.x) > 20:
-			print("MOVED!")
+			pass
+			#print("MOVED!")
 

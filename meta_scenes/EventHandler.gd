@@ -80,3 +80,4 @@ func _on_manJump_timeout():
 	Manphone.add_to_path(DATA.ENTRY.DOORRIGHT)
 
 
+
