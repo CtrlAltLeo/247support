@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://terminal/CommandProcessor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://models/computer/old_computer.glb" type="PackedScene" id=2]
@@ -94,13 +94,12 @@ albedo_color = Color( 0.627451, 0.415686, 0.192157, 1 )
 
 [sub_resource type="CubeMesh" id=9]
 
-[sub_resource type="CapsuleMesh" id=10]
-
 [sub_resource type="Environment" id=11]
 
 [node name="main" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.43046, 0 )
 script = ExtResource( 21 )
+days = [ null ]
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.67, 1.187, 0.109565 )
@@ -308,30 +307,25 @@ EntryManagerPath = NodePath("../Objects/EntryManager")
 LightManagerPath = NodePath("../Objects/LightManager")
 ManphonePath = NodePath("../ManPhone")
 
-[node name="delay" parent="EventHandler" instance=ExtResource( 27 )]
-trigger = "delay"
-
-[node name="ring" parent="EventHandler" instance=ExtResource( 28 )]
-phonecall_id = "welcome"
-
-[node name="Trigger" parent="EventHandler" instance=ExtResource( 27 )]
-trigger = "answerPhone"
+[node name="cmd" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "whack"
 cmd = "psreset"
 
-[node name="error" parent="EventHandler" instance=ExtResource( 28 )]
-eventType = 2
-
-[node name="Trigger2" parent="EventHandler" instance=ExtResource( 27 )]
-trigger = "whack"
-delay_time = 5
-
-[node name="call" parent="EventHandler" instance=ExtResource( 28 )]
-eventType = 3
+[node name="p1" parent="EventHandler" instance=ExtResource( 28 )]
+eventType = 5
 phonecall_id = "welcome"
-side = 1
+
+[node name="ring2" parent="EventHandler" instance=ExtResource( 28 )]
+eventType = 7
+phonecall_id = "welcome"
+ManphoneTarget = 2
+
+[node name="ring3" parent="EventHandler" instance=ExtResource( 28 )]
+eventType = 7
+phonecall_id = "welcome"
+ManphoneTarget = 1
 
 [node name="ManPhone" parent="." instance=ExtResource( 20 )]
-visible = false
 EntryManagerPath = NodePath("../Objects/EntryManager")
 SPEED = 0.2
 
@@ -341,22 +335,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.70503, 0 )
 [node name="DoorLeft" parent="ManPhone/pathNodes" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77681, 0, 13.898 )
 
-[node name="MeshInstance2" type="MeshInstance" parent="ManPhone/pathNodes/DoorLeft" index="0"]
-mesh = SubResource( 10 )
-skeleton = NodePath("../../DoorRigth")
-
 [node name="DoorRigth" parent="ManPhone/pathNodes" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.754792, 0, -16.4371 )
 
-[node name="MeshInstance" type="MeshInstance" parent="ManPhone/pathNodes/DoorRigth" index="0"]
-mesh = SubResource( 10 )
-
 [node name="middle" parent="ManPhone/pathNodes" index="2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.18245, 0, 0.303932 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="ManPhone/pathNodes/middle" index="0"]
-mesh = SubResource( 10 )
-skeleton = NodePath("../../DoorRigth")
 
 [node name="deskFront" parent="ManPhone/pathNodes" index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4369, 0, 5.10712 )

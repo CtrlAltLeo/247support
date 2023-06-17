@@ -65,24 +65,37 @@ func light(id, state):
 	else:
 		LightManager.off(id)
 
-func on_trigger_received(triggerName, cmd = ""):	
+func on_trigger_received(triggerName, cmd = []):	
 	if get_child_count() == 0:
 		return
 	
 	if get_child(0).obj_id == "Trigger":
 		if get_child(0).trigger == triggerName:
 			
+			var trig = get_child(0)
+			
 			if triggerName == "command":
-				if get_child(0).cmd == cmd:
-					get_child(0).queue_free()
+				if trig.cmd == cmd[0]:
+					
+					if trig.arg == "":
+						trig.queue_free()
+						print("raw cmd")
+					else:
+						if trig.arg != cmd[cmd.size() - 1]:
+							return
+				else:
+					return
 			else:
 				get_child(0).queue_free()
+				print("noped")
+			
 			
 			#Processes all events before next trigger
 			var nextNode = 1
 			while (get_child(nextNode) != null and get_child(nextNode).obj_id == "Event"):
 				get_child(nextNode).do_event()
 				nextNode += 1
+				
 				
 
 

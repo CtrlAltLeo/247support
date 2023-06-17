@@ -26,7 +26,7 @@ func validate_cmd(c):
 		var cmd = get_node(keyword)
 		cmd.activate(args)
 		print(keyword)
-		emit_signal("command", keyword)
+		emit_signal("command", args)
 		
 		
 func terminal_print(msg):
