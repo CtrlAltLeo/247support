@@ -9,6 +9,11 @@ onready var terminal = get_node(TerminalPath)
 func effect(args):
 	
 	if args.size() == 1:
+		
+		if args[0] == "psreset":
+			terminal.append_history("ERROR!", true)
+			terminal.append_history("Use: psreset [user]", true)
+		
 		return
 	
 	var tasks = TaskMaster.get_task_by_cmd(args[0])

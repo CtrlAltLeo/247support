@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/night1-2.mp3-863192ab5f827cbeac151932fc22cf04.mp3str"
+
+[deps]
+
+source_file="res://sounds/non-task-voices/night1-2.mp3"
+dest_files=[ "res://.import/night1-2.mp3-863192ab5f827cbeac151932fc22cf04.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

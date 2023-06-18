@@ -35,6 +35,7 @@ func teleport_to(A):
 
 func run_to(A):
 	targetLocation = A
+	$manphone1/footsteps.play()
 	
 func run_between(A, B):
 	teleport_to(A)
@@ -43,6 +44,7 @@ func run_between(A, B):
 func add_to_path(A):
 	path.append(A)
 	targetLocation = A
+	$manphone1/footsteps.play()
 	
 func get_pathnode(A):
 	return $pathNodes.get_child(A)
@@ -64,6 +66,7 @@ func _process(delta):
 				currentLocation = targetLocation
 				print("here")
 				emit_signal("arrival")
+				$manphone1/footsteps.stop()
 		else:	
 			dir = (get_pathnode(path[0]).translation - get_pathnode(currentLocation).translation).normalized()
 			
@@ -73,6 +76,7 @@ func _process(delta):
 					currentLocation = targetLocation
 					path.clear()
 					emit_signal("pathover")
+					$manphone1/footsteps.stop()
 				else:
 					currentLocation = path[0]
 				
@@ -84,6 +88,9 @@ func _process(delta):
 		Character.rotation.y = atan2(dir.x, dir.z)
 	
 	Character.translation.y = -2.85
+	
+func _ready():
+	teleport_to(DATA.ENTRY.HIDDEN)
 
 			
 		

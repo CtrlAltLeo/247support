@@ -2,9 +2,9 @@ extends Node2D
 
 var obj_id = "Event"
 
-onready var EventManager = get_parent()
+onready var EventManager = get_parent().get_parent()
 
-export (int, "phonecall", "task", "error", "light", "door", "manphoneTP", "manphoneRunBetween", "manphoneAddPath") var eventType
+export (int, "phonecall", "task", "error", "light", "door", "manphoneTP", "manphoneRunBetween", "manphoneAddPath", "taskNoCall") var eventType
 
 export (String) var phonecall_id
 export (int) var task_id
@@ -36,6 +36,8 @@ func do_event():
 			EventManager.Manphone.run_between(ManphoneCurrentLocation, ManphoneTarget)
 		7:
 			EventManager.Manphone.add_to_path(ManphoneTarget)
+		8:
+			EventManager.new_task(task_id, true)
 			
 	queue_free()
 			

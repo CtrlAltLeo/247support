@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://terminal/CommandProcessor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://models/computer/old_computer.glb" type="PackedScene" id=2]
@@ -28,6 +28,8 @@
 [ext_resource path="res://images/brimlessstikcer.png" type="Texture" id=26]
 [ext_resource path="res://StoryScripts/Trigger.tscn" type="PackedScene" id=27]
 [ext_resource path="res://StoryScripts/Event.tscn" type="PackedScene" id=28]
+[ext_resource path="res://meta_scenes/AudioManager.tscn" type="PackedScene" id=29]
+[ext_resource path="res://sounds/computeridle.mp3" type="AudioStream" id=30]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 10 )
@@ -95,6 +97,9 @@ albedo_color = Color( 0.627451, 0.415686, 0.192157, 1 )
 [sub_resource type="CubeMesh" id=9]
 
 [sub_resource type="Environment" id=11]
+background_mode = 1
+background_energy = 2.0
+ambient_light_energy = 2.0
 
 [node name="main" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.43046, 0 )
@@ -108,8 +113,8 @@ script = ExtResource( 13 )
 
 [node name="SpotLight" type="SpotLight" parent="Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.21541e-08, 0, 1.18933 )
-spot_range = 16.6153
-spot_angle = 38.0939
+spot_range = 6.40163
+spot_angle = 29.8863
 
 [node name="TerminalStack" type="Control" parent="."]
 material = SubResource( 2 )
@@ -307,23 +312,68 @@ EntryManagerPath = NodePath("../Objects/EntryManager")
 LightManagerPath = NodePath("../Objects/LightManager")
 ManphonePath = NodePath("../ManPhone")
 
-[node name="cmd" parent="EventHandler" instance=ExtResource( 27 )]
-trigger = "whack"
+[node name="delay1" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 5
+
+[node name="phone1" parent="EventHandler/delay1" instance=ExtResource( 28 )]
+phonecall_id = "night1-1"
+
+[node name="stink" parent="EventHandler/delay1" instance=ExtResource( 28 )]
+eventType = 8
+phonecall_id = "night1-1"
+
+[node name="stinkCmd" parent="EventHandler" instance=ExtResource( 27 )]
 cmd = "psreset"
+arg = "stink"
 
-[node name="p1" parent="EventHandler" instance=ExtResource( 28 )]
-eventType = 5
-phonecall_id = "welcome"
+[node name="smallDelay" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
 
-[node name="ring2" parent="EventHandler" instance=ExtResource( 28 )]
-eventType = 7
-phonecall_id = "welcome"
-ManphoneTarget = 2
+[node name="phone2" parent="EventHandler/smallDelay" instance=ExtResource( 28 )]
+phonecall_id = "night1-2"
 
-[node name="ring3" parent="EventHandler" instance=ExtResource( 28 )]
-eventType = 7
-phonecall_id = "welcome"
-ManphoneTarget = 1
+[node name="delay2" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 15
+
+[node name="task1" parent="EventHandler/delay2" instance=ExtResource( 28 )]
+eventType = 1
+task_id = 1
+
+[node name="toenaoi" parent="EventHandler" instance=ExtResource( 27 )]
+delay_time = 10
+cmd = "psreset"
+arg = "toenail1234"
+
+[node name="lightoff" parent="EventHandler/toenaoi" instance=ExtResource( 28 )]
+eventType = 3
+
+[node name="lightoff2" parent="EventHandler/toenaoi" instance=ExtResource( 28 )]
+eventType = 3
+side = 1
+
+[node name="dooropenL" parent="EventHandler/toenaoi" instance=ExtResource( 28 )]
+eventType = 4
+objectState = true
+
+[node name="delay4" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 3
+cmd = "psreset"
+arg = "toenail123"
+
+[node name="lightoff3" parent="EventHandler/delay4" instance=ExtResource( 28 )]
+eventType = 3
+objectState = true
+
+[node name="lightoff4" parent="EventHandler/delay4" instance=ExtResource( 28 )]
+eventType = 3
+side = 1
+objectState = true
+
+[node name="error" parent="EventHandler/delay4" instance=ExtResource( 28 )]
+eventType = 2
 
 [node name="ManPhone" parent="." instance=ExtResource( 20 )]
 EntryManagerPath = NodePath("../Objects/EntryManager")
@@ -353,11 +403,22 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.678961, 0, -5.00065 )
 [node name="player" parent="ManPhone/pathNodes" index="6"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.55519, 1.90735e-06, 0.0658216 )
 
+[node name="hidden" parent="ManPhone/pathNodes" index="7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.12477, 0, 0 )
+
 [node name="manphone1" parent="ManPhone" index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.686, 0 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 11 )
+
+[node name="AudioManager" parent="." instance=ExtResource( 29 )]
+
+[node name="computerFans" type="AudioStreamPlayer3D" parent="AudioManager"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.798665, -1.74029 )
+stream = ExtResource( 30 )
+unit_db = -10.0
+autoplay = true
 
 [connection signal="command" from="TerminalStack/ViewportContainer/Viewport/terminalInput" to="TerminalStack/CommandProcessor" method="_on_terminalInput_command"]
 [connection signal="command" from="TerminalStack/CommandProcessor" to="EventHandler" method="_on_CommandProcessor_command"]

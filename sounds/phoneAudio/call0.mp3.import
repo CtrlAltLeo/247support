@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/call0.mp3-75b9bd899a2280e7c3b775d05e96d369.mp3str"
+
+[deps]
+
+source_file="res://sounds/phoneAudio/call0.mp3"
+dest_files=[ "res://.import/call0.mp3-75b9bd899a2280e7c3b775d05e96d369.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

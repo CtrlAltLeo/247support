@@ -6,6 +6,7 @@ var phone_active = false
 signal dropped_call
 signal answer_phone
 signal end_call
+signal hang_up
 
 var rings = 0
 
@@ -39,6 +40,10 @@ func pick_up():
 	if ringing:
 		stop_ring()
 		emit_signal("answer_phone")
+		return
+	if phone_active:
+		end_call()
+		
 	else:
 		pass
 
@@ -48,12 +53,15 @@ func _on_clickableArea_clicked():
 func new_voice(filepath):
 	$voice.stream = load(filepath)
 
-
 func _on_voice_finished():
+	end_call()
+
+func end_call():
 	$AnimationPlayer.play_backwards("pickUp")
 	phone_active = false
 	emit_signal("end_call")
-
+	$voice.stop()
+	
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "ring":

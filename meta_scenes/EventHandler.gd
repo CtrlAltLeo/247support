@@ -18,8 +18,10 @@ onready var LightManager = get_node(LightManagerPath)
 export (NodePath) var  ManphonePath
 onready var Manphone = get_node(ManphonePath)
 
+func _ready():
+	get_child(0).on_deck()
 
-func new_task(id = 0):
+func new_task(id = 0, noCall = false):
 	
 	var ticket = id #Later, this will be random
 	
@@ -27,8 +29,9 @@ func new_task(id = 0):
 	
 	TaskMaster.add_task(data.command, data.args)
 	
-	Phone.new_voice(data.phoneAudio)
-	Phone.ring()
+	if noCall == false:
+		Phone.new_voice(data.phoneAudio)
+		Phone.ring()
 	
 func phone_call(id):
 	var data = DATA.phoneAudio[id]
@@ -65,7 +68,10 @@ func light(id, state):
 	else:
 		LightManager.off(id)
 
-func on_trigger_received(triggerName, cmd = []):	
+func on_trigger_received(triggerName, cmd = []):
+	
+	print(triggerName)
+	
 	if get_child_count() == 0:
 		return
 	
@@ -78,7 +84,6 @@ func on_trigger_received(triggerName, cmd = []):
 				if trig.cmd == cmd[0]:
 					
 					if trig.arg == "":
-						trig.queue_free()
 						print("raw cmd")
 					else:
 						if trig.arg != cmd[cmd.size() - 1]:
@@ -86,20 +91,19 @@ func on_trigger_received(triggerName, cmd = []):
 				else:
 					return
 			else:
-				get_child(0).queue_free()
-				print("noped")
+				pass
 			
 			
-			#Processes all events before next trigger
-			var nextNode = 1
-			while (get_child(nextNode) != null and get_child(nextNode).obj_id == "Event"):
-				get_child(nextNode).do_event()
-				nextNode += 1
+			for Event in get_child(0).get_children():
+				if "obj_id" in Event:
+					Event.do_event()
 				
+			trig.queue_free()
+			
+			if get_child_count() > 1:
+				get_child(1).on_deck()
 				
-
-
-
+		
 #Computer Whack
 func _on_computerClick_clicked():
 	on_trigger_received("whack")

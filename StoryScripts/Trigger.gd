@@ -8,13 +8,15 @@ export (int) var delay_time
 
 export (String) var cmd
 export (String) var arg
-
-func _ready():
+	
+		
+func on_deck():
 	if trigger == "delay":
 		var t = Timer.new()
 		t.wait_time = delay_time
 		t.autostart = true
 		t.one_shot = true
+		t.connect("timeout", t, "queue_free")
 		t.connect("timeout", get_parent(), "trigger_timeout")
 		self.add_child(t)
 		

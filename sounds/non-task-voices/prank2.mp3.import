@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/prank2.mp3-87a6e7a424af0da92e923e1aecd02559.mp3str"
+
+[deps]
+
+source_file="res://sounds/non-task-voices/prank2.mp3"
+dest_files=[ "res://.import/prank2.mp3-87a6e7a424af0da92e923e1aecd02559.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
