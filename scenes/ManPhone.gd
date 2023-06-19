@@ -60,7 +60,7 @@ func _process(delta):
 		var dir = Vector3()
 			
 		if path.size() == 0:
-			dir = (get_pathnode(targetLocation).translation - get_pathnode(currentLocation)).normalized()
+			dir = (get_pathnode(targetLocation).translation - get_pathnode(currentLocation).translation).normalized()
 			
 			if Character.translation.distance_to($pathNodes.get_child(targetLocation).translation) < 1:
 				currentLocation = targetLocation
@@ -75,7 +75,7 @@ func _process(delta):
 				if path[0] == targetLocation:
 					currentLocation = targetLocation
 					path.clear()
-					emit_signal("pathover")
+					emit_signal("arrival")
 					$manphone1/footsteps.stop()
 				else:
 					currentLocation = path[0]

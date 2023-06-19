@@ -67,10 +67,14 @@ func light(id, state):
 		LightManager.on(id)
 	else:
 		LightManager.off(id)
+		
+func add_andy_line(text):
+	Terminal.add_andy_line(text)
+
+func start_andy():
+	Terminal.andy_start()
 
 func on_trigger_received(triggerName, cmd = []):
-	
-	print(triggerName)
 	
 	if get_child_count() == 0:
 		return
@@ -118,3 +122,11 @@ func _on_CommandProcessor_command(cmd):
 
 func _on_Phone_answer_phone():
 	on_trigger_received("answerPhone")
+
+
+func _on_terminalInput_andyover():
+	on_trigger_received("andyOver")
+
+
+func _on_ManPhone_arrival():
+	on_trigger_received("manphoneArrive")

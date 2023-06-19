@@ -74,7 +74,7 @@ shader_param/noise_speed = 5.0
 shader_param/static_noise_intensity = 0.035
 shader_param/aberration = 0.03
 shader_param/brightness = 1.4
-shader_param/discolor = false
+shader_param/discolor = true
 shader_param/warp_amount = 1.0
 shader_param/clip_warp = false
 shader_param/vignette_intensity = 0.4
@@ -140,6 +140,7 @@ handle_input_locally = false
 render_target_update_mode = 3
 
 [node name="terminalInput" parent="TerminalStack/ViewportContainer/Viewport" instance=ExtResource( 3 )]
+can_type = true
 
 [node name="Sprite" type="Sprite" parent="TerminalStack/ViewportContainer/Viewport/terminalInput"]
 material = SubResource( 3 )
@@ -275,8 +276,9 @@ texture = ExtResource( 24 )
 
 [node name="brimsticker" type="Sprite3D" parent="Objects/StaticOffice"]
 transform = Transform( 0.10526, 0, 0, 0, 0.10526, 0, 0, 0, 1, 0.439146, 0.711665, -1.2532 )
-modulate = Color( 0.792157, 0.776471, 0.603922, 1 )
+generate_lightmap = false
 opacity = 0.8
+shaded = true
 texture = ExtResource( 26 )
 
 [node name="EntryManager" parent="Objects" instance=ExtResource( 19 )]
@@ -312,68 +314,99 @@ EntryManagerPath = NodePath("../Objects/EntryManager")
 LightManagerPath = NodePath("../Objects/LightManager")
 ManphonePath = NodePath("../ManPhone")
 
-[node name="delay1" parent="EventHandler" instance=ExtResource( 27 )]
-trigger = "delay"
-delay_time = 5
-
-[node name="phone1" parent="EventHandler/delay1" instance=ExtResource( 28 )]
-phonecall_id = "night1-1"
-
-[node name="stink" parent="EventHandler/delay1" instance=ExtResource( 28 )]
-eventType = 8
-phonecall_id = "night1-1"
-
-[node name="stinkCmd" parent="EventHandler" instance=ExtResource( 27 )]
-cmd = "psreset"
-arg = "stink"
-
-[node name="smallDelay" parent="EventHandler" instance=ExtResource( 27 )]
+[node name="delay" parent="EventHandler" instance=ExtResource( 27 )]
 trigger = "delay"
 
-[node name="phone2" parent="EventHandler/smallDelay" instance=ExtResource( 28 )]
-phonecall_id = "night1-2"
+[node name="Event" parent="EventHandler/delay" instance=ExtResource( 28 )]
+eventType = 9
+andyLine = "Hello World"
 
-[node name="delay2" parent="EventHandler" instance=ExtResource( 27 )]
-trigger = "delay"
-delay_time = 15
+[node name="Event2" parent="EventHandler/delay" instance=ExtResource( 28 )]
+eventType = 9
+andyLine = "My name is Andy."
 
-[node name="task1" parent="EventHandler/delay2" instance=ExtResource( 28 )]
-eventType = 1
-task_id = 1
+[node name="Event3" parent="EventHandler/delay" instance=ExtResource( 28 )]
+eventType = 9
+andyLine = "I used to work here, like you."
 
-[node name="toenaoi" parent="EventHandler" instance=ExtResource( 27 )]
-delay_time = 10
-cmd = "psreset"
-arg = "toenail1234"
+[node name="Event4" parent="EventHandler/delay" instance=ExtResource( 28 )]
+eventType = 9
+andyLine = "Something bad happened."
 
-[node name="lightoff" parent="EventHandler/toenaoi" instance=ExtResource( 28 )]
-eventType = 3
+[node name="Event6" parent="EventHandler/delay" instance=ExtResource( 28 )]
+eventType = 9
+andyLine = "I'd like to tell you more."
 
-[node name="lightoff2" parent="EventHandler/toenaoi" instance=ExtResource( 28 )]
-eventType = 3
-side = 1
+[node name="Event7" parent="EventHandler/delay" instance=ExtResource( 28 )]
+eventType = 9
+andyLine = "Do you trust me?"
 
-[node name="dooropenL" parent="EventHandler/toenaoi" instance=ExtResource( 28 )]
+[node name="Event8" parent="EventHandler/delay" instance=ExtResource( 28 )]
+eventType = 9
+andyLine = "Can I trust you?"
+
+[node name="Event9" parent="EventHandler/delay" instance=ExtResource( 28 )]
+eventType = 9
+andyLine = "I guess we'll find out."
+
+[node name="Event10" parent="EventHandler/delay" instance=ExtResource( 28 )]
+eventType = 9
+andyLine = "I have to go."
+
+[node name="Event11" parent="EventHandler/delay" instance=ExtResource( 28 )]
+eventType = 9
+andyLine = "Stay Absolutely Still when he's here."
+
+[node name="Event5" parent="EventHandler/delay" instance=ExtResource( 28 )]
+eventType = 10
+andyLine = "F BOmb"
+
+[node name="Trigger" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "andyOver"
+
+[node name="Event" parent="EventHandler/Trigger" instance=ExtResource( 28 )]
 eventType = 4
 objectState = true
 
-[node name="delay4" parent="EventHandler" instance=ExtResource( 27 )]
+[node name="delay2" parent="EventHandler" instance=ExtResource( 27 )]
 trigger = "delay"
 delay_time = 3
-cmd = "psreset"
-arg = "toenail123"
 
-[node name="lightoff3" parent="EventHandler/delay4" instance=ExtResource( 28 )]
+[node name="Event" parent="EventHandler/delay2" instance=ExtResource( 28 )]
 eventType = 3
-objectState = true
+phonecall_id = "breathing"
 
-[node name="lightoff4" parent="EventHandler/delay4" instance=ExtResource( 28 )]
+[node name="Event2" parent="EventHandler/delay2" instance=ExtResource( 28 )]
 eventType = 3
+phonecall_id = "breathing"
+side = 1
+
+[node name="Event3" parent="EventHandler/delay2" instance=ExtResource( 28 )]
+eventType = 4
+phonecall_id = "breathing"
 side = 1
 objectState = true
 
-[node name="error" parent="EventHandler/delay4" instance=ExtResource( 28 )]
-eventType = 2
+[node name="phoneMove" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 4
+
+[node name="Event3" parent="EventHandler/phoneMove" instance=ExtResource( 28 )]
+eventType = 5
+
+[node name="Event" parent="EventHandler/phoneMove" instance=ExtResource( 28 )]
+eventType = 7
+ManphoneTarget = 2
+
+[node name="Event2" parent="EventHandler/phoneMove" instance=ExtResource( 28 )]
+eventType = 7
+ManphoneTarget = 1
+
+[node name="manArrive" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "manphoneArrive"
+
+[node name="Event" parent="EventHandler/manArrive" instance=ExtResource( 28 )]
+phonecall_id = "breathing"
 
 [node name="ManPhone" parent="." instance=ExtResource( 20 )]
 EntryManagerPath = NodePath("../Objects/EntryManager")
@@ -420,6 +453,7 @@ stream = ExtResource( 30 )
 unit_db = -10.0
 autoplay = true
 
+[connection signal="andyover" from="TerminalStack/ViewportContainer/Viewport/terminalInput" to="EventHandler" method="_on_terminalInput_andyover"]
 [connection signal="command" from="TerminalStack/ViewportContainer/Viewport/terminalInput" to="TerminalStack/CommandProcessor" method="_on_terminalInput_command"]
 [connection signal="command" from="TerminalStack/CommandProcessor" to="EventHandler" method="_on_CommandProcessor_command"]
 [connection signal="print_terminal" from="TerminalStack/CommandProcessor" to="TerminalStack/ViewportContainer/Viewport/terminalInput" method="append_history"]
@@ -433,6 +467,7 @@ autoplay = true
 [connection signal="answer_phone" from="Objects/Phone" to="EventHandler" method="_on_Phone_answer_phone"]
 [connection signal="clicked" from="Objects/Phone/clickableArea" to="Objects/Phone" method="_on_clickableArea_clicked"]
 [connection signal="clicked" from="Objects/Phone/clickableArea" to="EventHandler" method="_on_clickableArea_clicked"]
+[connection signal="arrival" from="ManPhone" to="EventHandler" method="_on_ManPhone_arrival"]
 
 [editable path="TerminalStack/CommandProcessor"]
 [editable path="Objects/arm"]

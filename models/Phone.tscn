@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://models/phone/Phone.glb" type="PackedScene" id=1]
 [ext_resource path="res://orphaned_scripts/Phone.gd" type="Script" id=2]
 [ext_resource path="res://sounds/Phone Ringing.mp3" type="AudioStream" id=3]
+[ext_resource path="res://sounds/phoneDown.wav" type="AudioStream" id=4]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -106,6 +107,9 @@ stream = ExtResource( 3 )
 [node name="rering_timer" type="Timer" parent="." index="8"]
 wait_time = 2.0
 one_shot = true
+
+[node name="hangupNoise" type="AudioStreamPlayer" parent="." index="9"]
+stream = ExtResource( 4 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="finished" from="voice" to="." method="_on_voice_finished"]

@@ -9,8 +9,6 @@ func _ready():
 	
 	for child in self.get_children():
 		commands.append(child.keyword)
-		
-	print(commands)
 
 func _on_terminalInput_command(text):
 	text = text.to_lower()

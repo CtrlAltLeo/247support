@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://terminal/Andy/andyTheme.tres" type="Theme" id=1]
+[ext_resource path="res://terminal/Andy/AndyText.gd" type="Script" id=2]
+[ext_resource path="res://meta_scenes/keyboardSounds.tscn" type="PackedScene" id=3]
+
+[node name="AndyText" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="History" type="Label" parent="."]
+margin_left = 95.4882
+margin_right = 1029.49
+margin_bottom = 523.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+valign = 2
+
+[node name="Entry" type="Label" parent="."]
+margin_left = 90.6371
+margin_top = 522.556
+margin_right = 948.637
+margin_bottom = 599.556
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+
+[node name="canSeeTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="keyboardSounds" parent="." instance=ExtResource( 3 )]
+
+[node name="EndConvo" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="canSeeTimer" to="." method="_on_canSeeTimer_timeout"]
+[connection signal="timeout" from="EndConvo" to="." method="_on_EndConvo_timeout"]

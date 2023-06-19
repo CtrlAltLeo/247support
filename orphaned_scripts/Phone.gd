@@ -61,6 +61,7 @@ func end_call():
 	phone_active = false
 	emit_signal("end_call")
 	$voice.stop()
+	$hangupNoise.play(0.38)
 	
 
 func _on_AnimationPlayer_animation_finished(anim_name):

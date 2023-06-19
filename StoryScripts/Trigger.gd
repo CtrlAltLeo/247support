@@ -2,7 +2,7 @@ extends Node2D
 
 var obj_id = "Trigger"
 
-export (String, "whack", "answerPhone", "hangupPhone", "command", "delay") var trigger
+export (String, "whack", "answerPhone", "hangupPhone", "command", "delay", "andyOver", "manphoneArrive") var trigger
 
 export (int) var delay_time
 

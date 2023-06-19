@@ -5,6 +5,9 @@ onready var text_input = $TextEdit
 onready var history = $history
 
 signal command(text)
+signal andyover
+
+export var can_type = true
 
 var test = ["Sweet","little","bumblee,","I","know","what","you","what","from","me,","do","pa","do","pa","do","da,","daa","do","pa","do","pa","do","da","daa"]
 var between_time = [.5,.5,.1,.2, .3, .2, .2 , .4, .4, .2, .2,.2,.2,.2,.3,.5,.2, .2, .2, .2, .2, .3, .4]
@@ -17,7 +20,10 @@ var insults = ["Nice try, Bozo", "What the heck?", "404: u suck", "ERROR: 1d10t 
 func _ready():
 	$TextEdit.grab_focus()
 
+
 func _process(delta):
+	
+	$TextEdit.readonly = !can_type
 	
 	
 	if Input.is_action_just_pressed("Enter"):
@@ -44,6 +50,10 @@ func clear_history():
 	history.text = ""
 
 func append_history(t, newline = false):
+	
+	if can_type == false:
+		return
+	
 	history.text += t
 	
 	if newline:
@@ -96,3 +106,24 @@ func stop_error():
 	clear_history()
 	clear_input()
 	insult()
+	
+func no_input():
+	can_type = false
+	clear_history()
+	clear_input()
+	
+func allow_input():
+	can_type = true
+	
+func add_andy_line(text):
+	$AndyText.add_line(text)
+
+func andy_start():
+	$AndyText.start_typing()
+	no_input()
+	
+
+func _on_AndyText_typing_over():
+	emit_signal("andyover")
+	allow_input()
+	start_error()

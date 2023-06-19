@@ -25,6 +25,7 @@ var phoneAudio = {
 	"night1-1":"res://sounds/non-task-voices/night1-1.mp3",
 	"night1-2":"res://sounds/non-task-voices/night1-2.mp3",
 	"prank1":"res://sounds/non-task-voices/prank1.mp3",
-	"prank2":"res://sounds/non-task-voices/prank2.mp3"
+	"prank2":"res://sounds/non-task-voices/prank2.mp3",
+	"breathing":"res://sounds/breathing.mp3"
 	
 }
