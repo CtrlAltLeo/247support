@@ -8,12 +8,16 @@ var tickets = [
 	"args":"stink"},
 	
 	{"phoneAudio":"res://sounds/phoneAudio/call0.mp3",
-	"command":0,
+	"command":2,
 	"args":"toenail1234"},
 	
 	{"phoneAudio":"res://sounds/phoneAudio/call1.mp3",
 	"command":0,
-	"args":"chiptech"}
+	"args":"chiptech"},
+	
+	{"phoneAudio":"res://sounds/phoneAudio/call1.mp3",
+	"command":2,
+	"args":"stink"}
 	
 ]
 

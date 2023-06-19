@@ -94,6 +94,9 @@ script = ExtResource( 2 )
 [node name="Reciever001" parent="." index="2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00153338, -0.00288159, 0 )
 
+[node name="BezierCurve" parent="." index="3"]
+visible = false
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
 anims/RESET = SubResource( 2 )
 anims/pickUp = SubResource( 3 )

@@ -10,7 +10,7 @@ var _type = 0
 enum task_type {
 	PASSWORD,
 	REMOVE,
-	ACCESS
+	PROMOTE
 }
 
 func _ready():
@@ -19,6 +19,8 @@ func _ready():
 		command = "psreset"
 	if _type == task_type.REMOVE:
 		command = "rmvusr"
+	if _type ==  task_type.PROMOTE:
+		command = "promote"
 		
 func complete():
 	emit_signal("complete")

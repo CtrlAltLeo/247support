@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://terminal/CommandProcessor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://models/computer/old_computer.glb" type="PackedScene" id=2]
@@ -26,8 +26,6 @@
 [ext_resource path="res://images/sticky1.png" type="Texture" id=24]
 [ext_resource path="res://terminal/commands/help.gd" type="Script" id=25]
 [ext_resource path="res://images/brimlessstikcer.png" type="Texture" id=26]
-[ext_resource path="res://StoryScripts/Trigger.tscn" type="PackedScene" id=27]
-[ext_resource path="res://StoryScripts/Event.tscn" type="PackedScene" id=28]
 [ext_resource path="res://meta_scenes/AudioManager.tscn" type="PackedScene" id=29]
 [ext_resource path="res://sounds/computeridle.mp3" type="AudioStream" id=30]
 
@@ -178,10 +176,10 @@ script = ExtResource( 9 )
 TaskMasterPath = NodePath("../../../TaskMaster")
 TerminalPath = NodePath("../../../ViewportContainer/Viewport/terminalInput")
 
-[node name="access" parent="TerminalStack/CommandProcessor" instance=ExtResource( 7 )]
-keyword = "psreset"
+[node name="promote" parent="TerminalStack/CommandProcessor" instance=ExtResource( 7 )]
+keyword = "promote"
 
-[node name="command_effects" parent="TerminalStack/CommandProcessor/access" instance=ExtResource( 4 )]
+[node name="command_effects" parent="TerminalStack/CommandProcessor/promote" instance=ExtResource( 4 )]
 script = ExtResource( 9 )
 TaskMasterPath = NodePath("../../../TaskMaster")
 TerminalPath = NodePath("../../../ViewportContainer/Viewport/terminalInput")
@@ -313,100 +311,6 @@ TerminalPath = NodePath("../TerminalStack/ViewportContainer/Viewport/terminalInp
 EntryManagerPath = NodePath("../Objects/EntryManager")
 LightManagerPath = NodePath("../Objects/LightManager")
 ManphonePath = NodePath("../ManPhone")
-
-[node name="delay" parent="EventHandler" instance=ExtResource( 27 )]
-trigger = "delay"
-
-[node name="Event" parent="EventHandler/delay" instance=ExtResource( 28 )]
-eventType = 9
-andyLine = "Hello World"
-
-[node name="Event2" parent="EventHandler/delay" instance=ExtResource( 28 )]
-eventType = 9
-andyLine = "My name is Andy."
-
-[node name="Event3" parent="EventHandler/delay" instance=ExtResource( 28 )]
-eventType = 9
-andyLine = "I used to work here, like you."
-
-[node name="Event4" parent="EventHandler/delay" instance=ExtResource( 28 )]
-eventType = 9
-andyLine = "Something bad happened."
-
-[node name="Event6" parent="EventHandler/delay" instance=ExtResource( 28 )]
-eventType = 9
-andyLine = "I'd like to tell you more."
-
-[node name="Event7" parent="EventHandler/delay" instance=ExtResource( 28 )]
-eventType = 9
-andyLine = "Do you trust me?"
-
-[node name="Event8" parent="EventHandler/delay" instance=ExtResource( 28 )]
-eventType = 9
-andyLine = "Can I trust you?"
-
-[node name="Event9" parent="EventHandler/delay" instance=ExtResource( 28 )]
-eventType = 9
-andyLine = "I guess we'll find out."
-
-[node name="Event10" parent="EventHandler/delay" instance=ExtResource( 28 )]
-eventType = 9
-andyLine = "I have to go."
-
-[node name="Event11" parent="EventHandler/delay" instance=ExtResource( 28 )]
-eventType = 9
-andyLine = "Stay Absolutely Still when he's here."
-
-[node name="Event5" parent="EventHandler/delay" instance=ExtResource( 28 )]
-eventType = 10
-andyLine = "F BOmb"
-
-[node name="Trigger" parent="EventHandler" instance=ExtResource( 27 )]
-trigger = "andyOver"
-
-[node name="Event" parent="EventHandler/Trigger" instance=ExtResource( 28 )]
-eventType = 4
-objectState = true
-
-[node name="delay2" parent="EventHandler" instance=ExtResource( 27 )]
-trigger = "delay"
-delay_time = 3
-
-[node name="Event" parent="EventHandler/delay2" instance=ExtResource( 28 )]
-eventType = 3
-phonecall_id = "breathing"
-
-[node name="Event2" parent="EventHandler/delay2" instance=ExtResource( 28 )]
-eventType = 3
-phonecall_id = "breathing"
-side = 1
-
-[node name="Event3" parent="EventHandler/delay2" instance=ExtResource( 28 )]
-eventType = 4
-phonecall_id = "breathing"
-side = 1
-objectState = true
-
-[node name="phoneMove" parent="EventHandler" instance=ExtResource( 27 )]
-trigger = "delay"
-delay_time = 4
-
-[node name="Event3" parent="EventHandler/phoneMove" instance=ExtResource( 28 )]
-eventType = 5
-
-[node name="Event" parent="EventHandler/phoneMove" instance=ExtResource( 28 )]
-eventType = 7
-ManphoneTarget = 2
-
-[node name="Event2" parent="EventHandler/phoneMove" instance=ExtResource( 28 )]
-eventType = 7
-ManphoneTarget = 1
-
-[node name="manArrive" parent="EventHandler" instance=ExtResource( 27 )]
-trigger = "manphoneArrive"
-
-[node name="Event" parent="EventHandler/manArrive" instance=ExtResource( 28 )]
-phonecall_id = "breathing"
 
 [node name="ManPhone" parent="." instance=ExtResource( 20 )]
 EntryManagerPath = NodePath("../Objects/EntryManager")

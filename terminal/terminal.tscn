@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://terminal/terminalInput.gd" type="Script" id=1]
 [ext_resource path="res://mfbee/mfbee.mp3" type="AudioStream" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://sounds/erro.mp3" type="AudioStream" id=5]
 [ext_resource path="res://meta_scenes/keyboardSounds.tscn" type="PackedScene" id=6]
 [ext_resource path="res://terminal/Andy/terminalTheme.tres" type="Theme" id=7]
+[ext_resource path="res://images/maxwell.png" type="Texture" id=8]
+[ext_resource path="res://sounds/scarymaxwell.mp3" type="AudioStream" id=9]
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
@@ -27,6 +29,12 @@ margin_bottom = -1.05945
 theme = ExtResource( 7 )
 script = ExtResource( 1 )
 can_type = false
+
+[node name="Maxwell" type="Sprite" parent="."]
+visible = false
+position = Vector2( 507.202, 321.569 )
+scale = Vector2( 1.42605, 1.42605 )
+texture = ExtResource( 8 )
 
 [node name="TextEdit" type="TextEdit" parent="."]
 margin_left = 68.0
@@ -72,6 +80,10 @@ stream = ExtResource( 5 )
 [node name="keyboardSounds" parent="." instance=ExtResource( 6 )]
 
 [node name="AndyText" parent="." instance=ExtResource( 3 )]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="typing_over" from="AndyText" to="." method="_on_AndyText_typing_over"]

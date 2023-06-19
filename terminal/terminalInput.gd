@@ -14,7 +14,7 @@ var between_time = [.5,.5,.1,.2, .3, .2, .2 , .4, .4, .2, .2,.2,.2,.2,.3,.5,.2, 
 
 var error = false
 
-var insults = ["Nice try, Bozo", "What the heck?", "404: u suck", "ERROR: 1d10t WARNING", "I'd start looking for work.."]
+var insults = ["Nice try, Bozo", "What the heck?", "404: u suck", "ERROR: 1d10t WARNING", "Wrong Sandwich", "USE. YOUR. BRAIN.", "Logoff, Moron!"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
