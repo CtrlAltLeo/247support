@@ -43,7 +43,7 @@ func _on_canSeeTimer_timeout():
 		return
 		
 	$Entry.visible_characters += 1
-	$canSeeTimer.wait_time = rand_range(0.08, 0.2)
+	$canSeeTimer.wait_time = rand_range(0.1, 0.3)
 	$keyboardSounds.sound()
 	$canSeeTimer.start()
 

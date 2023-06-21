@@ -42,7 +42,7 @@ func pick_up():
 		emit_signal("answer_phone")
 		return
 	if phone_active:
-		end_call()
+		#end_call()
 		pass
 	else:
 		pass
