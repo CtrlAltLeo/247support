@@ -502,6 +502,7 @@ tracks/24/keys = PoolRealArray( 0, 1, 0, 0, 0, 1.04774e-09, -1.86265e-09, -1.862
 [sub_resource type="Animation" id=6]
 resource_name = "idle1"
 length = 2.95833
+loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("root/Skeleton:neck")
 tracks/0/interp = 1
@@ -679,6 +680,7 @@ tracks/24/enabled = true
 tracks/24/keys = PoolRealArray( 0, 1, 0, 0, 0, 1.04774e-09, -1.86265e-09, -1.86265e-09, 1, 1, 1, 1, 2.95833, 1, 0, 0, 0, 1.04774e-09, -1.86265e-09, -1.86265e-09, 1, 1, 1, 1 )
 
 [sub_resource type="AnimationNodeAnimation" id=7]
+animation = "idle1"
 
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Run"
@@ -687,7 +689,7 @@ animation = "Run"
 animation = "idle1"
 
 [sub_resource type="AnimationNodeBlendTree" id=10]
-graph_offset = Vector2( -124.025, 24.1614 )
+graph_offset = Vector2( -318.09, 89.7286 )
 nodes/Animation/node = SubResource( 9 )
 nodes/Animation/position = Vector2( 0, 120 )
 "nodes/Animation 2/node" = SubResource( 7 )
@@ -695,7 +697,7 @@ nodes/Animation/position = Vector2( 0, 120 )
 "nodes/Animation 3/node" = SubResource( 8 )
 "nodes/Animation 3/position" = Vector2( 0, 360 )
 nodes/output/position = Vector2( 740, 160 )
-node_connections = [ "output", 0, "Animation 3" ]
+node_connections = [ "output", 0, "Animation 2" ]
 
 [node name="ManPhone" type="Spatial"]
 script = ExtResource( 1 )

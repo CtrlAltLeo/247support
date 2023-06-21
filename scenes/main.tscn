@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://terminal/CommandProcessor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://models/computer/old_computer.glb" type="PackedScene" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://meta_scenes/AudioManager.tscn" type="PackedScene" id=29]
 [ext_resource path="res://sounds/computeridle.mp3" type="AudioStream" id=30]
 [ext_resource path="res://StoryScripts/Event.tscn" type="PackedScene" id=31]
+[ext_resource path="res://meta_scenes/Quitter.tscn" type="PackedScene" id=32]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 10 )
@@ -323,7 +324,7 @@ ManphonePath = NodePath("../ManPhone")
 
 [node name="delayfor1-1call" parent="EventHandler" instance=ExtResource( 27 )]
 trigger = "delay"
-delay_time = 3
+delay_time = 3.0
 
 [node name="call" parent="EventHandler/delayfor1-1call" instance=ExtResource( 31 )]
 phonecall_id = "night1-1"
@@ -333,35 +334,37 @@ eventType = 8
 phonecall_id = "night1-1"
 
 [node name="correctpassword" parent="EventHandler" instance=ExtResource( 27 )]
+delay_time = 0.0
 cmd = "psreset"
 arg = "farthead"
 
 [node name="delayfor1-1call2" parent="EventHandler" instance=ExtResource( 27 )]
 trigger = "delay"
-delay_time = 5
+delay_time = 8.0
 
 [node name="Event" parent="EventHandler/delayfor1-1call2" instance=ExtResource( 31 )]
 phonecall_id = "night1-2"
 
 [node name="Phonetrig" parent="EventHandler" instance=ExtResource( 27 )]
 trigger = "hangupPhone"
-delay_time = 15
+delay_time = 0.0
 
 [node name="delayforCall1" parent="EventHandler" instance=ExtResource( 27 )]
 trigger = "delay"
-delay_time = 7
+delay_time = 5.0
 
 [node name="Event" parent="EventHandler/delayforCall1" instance=ExtResource( 31 )]
 eventType = 1
 task_id = 1
 
 [node name="redPonyCMD" parent="EventHandler" instance=ExtResource( 27 )]
+delay_time = 0.0
 cmd = "psreset"
 arg = "redpony4"
 
 [node name="lightDelay" parent="EventHandler" instance=ExtResource( 27 )]
 trigger = "delay"
-delay_time = 3
+delay_time = 5.0
 
 [node name="Event" parent="EventHandler/lightDelay" instance=ExtResource( 31 )]
 eventType = 3
@@ -371,7 +374,7 @@ eventType = 2
 
 [node name="delayForPrank" parent="EventHandler" instance=ExtResource( 27 )]
 trigger = "delay"
-delay_time = 7
+delay_time = 3.0
 cmd = "psreset"
 arg = "redpony4"
 
@@ -380,11 +383,11 @@ phonecall_id = "prank1"
 
 [node name="Phonetrig2" parent="EventHandler" instance=ExtResource( 27 )]
 trigger = "hangupPhone"
-delay_time = 15
+delay_time = 0.0
 
 [node name="delayForAndy" parent="EventHandler" instance=ExtResource( 27 )]
 trigger = "delay"
-delay_time = 15
+delay_time = 5.0
 cmd = "psreset"
 arg = "redpony4"
 
@@ -444,17 +447,20 @@ task_id = 3
 
 [node name="andyOver" parent="EventHandler" instance=ExtResource( 27 )]
 trigger = "andyOver"
+delay_time = 0.0
 
 [node name="lights" parent="EventHandler/andyOver" instance=ExtResource( 31 )]
 eventType = 3
 side = 1
 
 [node name="aPswd" parent="EventHandler" instance=ExtResource( 27 )]
+delay_time = 0.0
 cmd = "promote"
 arg = "aboxer"
 
 [node name="doorOpenDelay" parent="EventHandler" instance=ExtResource( 27 )]
 trigger = "delay"
+delay_time = 0.5
 
 [node name="doorLOpen" parent="EventHandler/doorOpenDelay" instance=ExtResource( 31 )]
 eventType = 4
@@ -462,7 +468,7 @@ objectState = true
 
 [node name="taskDelay" parent="EventHandler" instance=ExtResource( 27 )]
 trigger = "delay"
-delay_time = 5
+delay_time = 3.0
 
 [node name="Event" parent="EventHandler/taskDelay" instance=ExtResource( 31 )]
 eventType = 1
@@ -474,12 +480,13 @@ task_id = 2
 objectState = true
 
 [node name="soupShoesCMD" parent="EventHandler" instance=ExtResource( 27 )]
+delay_time = 0.0
 cmd = "psreset"
 arg = "soupshoes"
 
 [node name="lightROn" parent="EventHandler" instance=ExtResource( 27 )]
 trigger = "delay"
-delay_time = 5
+delay_time = 2.0
 
 [node name="Event" parent="EventHandler/lightROn" instance=ExtResource( 31 )]
 eventType = 3
@@ -488,7 +495,7 @@ objectState = true
 
 [node name="andy2" parent="EventHandler" instance=ExtResource( 27 )]
 trigger = "delay"
-delay_time = 5
+delay_time = 4.0
 
 [node name="and1" parent="EventHandler/andy2" instance=ExtResource( 31 )]
 eventType = 9
@@ -544,9 +551,354 @@ andyLine = "watched?"
 
 [node name="andyOver2" parent="EventHandler" instance=ExtResource( 27 )]
 trigger = "andyOver"
-delay_time = 5
+delay_time = 0.0
 
 [node name="surprisePhone" parent="EventHandler/andyOver2" instance=ExtResource( 31 )]
+phonecall_id = "prank2"
+
+[node name="close door2" parent="EventHandler/andyOver2" instance=ExtResource( 31 )]
+eventType = 4
+phonecall_id = "prank2"
+
+[node name="prank2Over" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "hangupPhone"
+delay_time = 0.0
+
+[node name="delay" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 2.0
+
+[node name="lightL" parent="EventHandler/delay" instance=ExtResource( 31 )]
+eventType = 3
+
+[node name="lightR" parent="EventHandler/delay" instance=ExtResource( 31 )]
+eventType = 3
+side = 1
+
+[node name="manAcross" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 0.0
+
+[node name="manTP" parent="EventHandler/manAcross" instance=ExtResource( 31 )]
+eventType = 5
+
+[node name="lightL2" parent="EventHandler/manAcross" instance=ExtResource( 31 )]
+eventType = 7
+ManphoneTarget = 2
+
+[node name="lightL" parent="EventHandler/manAcross" instance=ExtResource( 31 )]
+eventType = 7
+ManphoneTarget = 1
+
+[node name="manArrive" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "manphoneArrive"
+delay_time = 0.0
+
+[node name="lightL" parent="EventHandler/manArrive" instance=ExtResource( 31 )]
+eventType = 3
+side = 1
+objectState = true
+
+[node name="gone" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 0.2
+
+[node name="lightL" parent="EventHandler/gone" instance=ExtResource( 31 )]
+eventType = 3
+side = 1
+
+[node name="gone2" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 0.2
+
+[node name="lightL" parent="EventHandler/gone2" instance=ExtResource( 31 )]
+eventType = 3
+objectState = true
+
+[node name="lightRight" parent="EventHandler/gone2" instance=ExtResource( 31 )]
+eventType = 3
+side = 1
+
+[node name="manGone" parent="EventHandler/gone2" instance=ExtResource( 31 )]
+eventType = 5
+side = 1
+objectState = true
+
+[node name="End" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 2.0
+
+[node name="lightL" parent="EventHandler/End" instance=ExtResource( 31 )]
+eventType = 3
+
+[node name="call" parent="EventHandler/End" instance=ExtResource( 31 )]
+phonecall_id = "myWay"
+side = 1
+
+[node name="manGone" parent="EventHandler/End" instance=ExtResource( 31 )]
+eventType = 5
+side = 1
+objectState = true
+ManphoneTarget = 7
+
+[node name="timer" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "answerPhone"
+delay_time = 6.67
+
+[node name="typing" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 6.67
+
+[node name="andy" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "oh no"
+
+[node name="andy2" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy12" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy13" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy14" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy15" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy16" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy17" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy18" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy19" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy20" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy21" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy22" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy23" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy24" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy3" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy4" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy5" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy6" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy7" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy8" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy9" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy10" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "run"
+
+[node name="andy11" parent="EventHandler/typing" instance=ExtResource( 31 )]
+eventType = 10
+andyLine = "run"
+
+[node name="lightON" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 0.4
+
+[node name="Event" parent="EventHandler/lightON" instance=ExtResource( 31 )]
+eventType = 3
+objectState = true
+
+[node name="Event2" parent="EventHandler/lightON" instance=ExtResource( 31 )]
+eventType = 3
+side = 1
+objectState = true
+
+[node name="lightOFF" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 0.4
+
+[node name="Event" parent="EventHandler/lightOFF" instance=ExtResource( 31 )]
+eventType = 3
+
+[node name="Event2" parent="EventHandler/lightOFF" instance=ExtResource( 31 )]
+eventType = 3
+side = 1
+
+[node name="lightON2" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 0.4
+
+[node name="Event" parent="EventHandler/lightON2" instance=ExtResource( 31 )]
+eventType = 3
+objectState = true
+
+[node name="Event2" parent="EventHandler/lightON2" instance=ExtResource( 31 )]
+eventType = 3
+side = 1
+objectState = true
+
+[node name="lightOFF2" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 0.4
+
+[node name="Event" parent="EventHandler/lightOFF2" instance=ExtResource( 31 )]
+eventType = 3
+
+[node name="Event2" parent="EventHandler/lightOFF2" instance=ExtResource( 31 )]
+eventType = 3
+side = 1
+
+[node name="lightON3" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 0.4
+
+[node name="Event" parent="EventHandler/lightON3" instance=ExtResource( 31 )]
+eventType = 3
+objectState = true
+
+[node name="Event2" parent="EventHandler/lightON3" instance=ExtResource( 31 )]
+eventType = 3
+side = 1
+objectState = true
+
+[node name="lightOFF3" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 0.4
+
+[node name="Event" parent="EventHandler/lightOFF3" instance=ExtResource( 31 )]
+eventType = 3
+
+[node name="Event2" parent="EventHandler/lightOFF3" instance=ExtResource( 31 )]
+eventType = 3
+side = 1
+
+[node name="lightON4" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 0.4
+
+[node name="Event" parent="EventHandler/lightON4" instance=ExtResource( 31 )]
+eventType = 3
+objectState = true
+
+[node name="Event2" parent="EventHandler/lightON4" instance=ExtResource( 31 )]
+eventType = 3
+side = 1
+objectState = true
+
+[node name="lightOFF4" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 0.4
+
+[node name="Event" parent="EventHandler/lightOFF4" instance=ExtResource( 31 )]
+eventType = 3
+
+[node name="Event2" parent="EventHandler/lightOFF4" instance=ExtResource( 31 )]
+eventType = 3
+side = 1
+
+[node name="lightON5" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 0.4
+
+[node name="Event" parent="EventHandler/lightON5" instance=ExtResource( 31 )]
+eventType = 3
+objectState = true
+
+[node name="Event2" parent="EventHandler/lightON5" instance=ExtResource( 31 )]
+eventType = 3
+side = 1
+objectState = true
+
+[node name="lightOFF5" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 0.4
+
+[node name="Event" parent="EventHandler/lightOFF5" instance=ExtResource( 31 )]
+eventType = 3
+
+[node name="Event2" parent="EventHandler/lightOFF5" instance=ExtResource( 31 )]
+eventType = 3
+side = 1
+
+[node name="lightON6" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 0.4
+
+[node name="Event" parent="EventHandler/lightON6" instance=ExtResource( 31 )]
+eventType = 3
+objectState = true
+
+[node name="Event2" parent="EventHandler/lightON6" instance=ExtResource( 31 )]
+eventType = 3
+side = 1
+objectState = true
+
+[node name="DoorsOpen" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 3.0
+
+[node name="Event" parent="EventHandler/DoorsOpen" instance=ExtResource( 31 )]
+eventType = 4
+objectState = true
+
+[node name="Event2" parent="EventHandler/DoorsOpen" instance=ExtResource( 31 )]
+eventType = 4
+side = 1
+objectState = true
+
+[node name="lastDelay" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 5.0
+
+[node name="Event" parent="EventHandler/lastDelay" instance=ExtResource( 31 )]
+eventType = 11
+objectState = true
+newscene = "res://meta_scenes/EndOfGame.tscn"
 
 [node name="ManPhone" parent="." instance=ExtResource( 20 )]
 EntryManagerPath = NodePath("../Objects/EntryManager")
@@ -565,10 +917,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.754792, 0, -16.4371 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.18245, 0, 0.303932 )
 
 [node name="deskFront" parent="ManPhone/pathNodes" index="3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4369, 0, 5.10712 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51506, 0, 3.52625 )
 
 [node name="deskLeft" parent="ManPhone/pathNodes" index="4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.93112, 0, 5.87678 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.109046, 0, 5.07022 )
 
 [node name="deskRight" parent="ManPhone/pathNodes" index="5"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.678961, 0, -5.00065 )
@@ -597,6 +949,8 @@ autoplay = true
 stream = ExtResource( 28 )
 volume_db = -5.0
 autoplay = true
+
+[node name="Quitter" parent="." instance=ExtResource( 32 )]
 
 [connection signal="andyover" from="TerminalStack/ViewportContainer/Viewport/terminalInput" to="EventHandler" method="_on_terminalInput_andyover"]
 [connection signal="command" from="TerminalStack/ViewportContainer/Viewport/terminalInput" to="TerminalStack/CommandProcessor" method="_on_terminalInput_command"]

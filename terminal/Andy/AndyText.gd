@@ -5,6 +5,7 @@ var text_queue = []
 signal typing_over
 var history_lines = 0
 
+
 func add_line(line):
 	text_queue.append(line)
 
@@ -52,5 +53,8 @@ func _on_EndConvo_timeout():
 	emit_signal("typing_over")
 	$History.text = ""
 	$Entry.text = ""
+	history_lines = 0
+	text_queue.clear()
+	
 
 	

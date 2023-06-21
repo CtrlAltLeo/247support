@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/wifi_prank.mp3-31499054a11c4ac791b3b946870eaadc.mp3str"
+
+[deps]
+
+source_file="res://sounds/non-task-voices/wifi_prank.mp3"
+dest_files=[ "res://.import/wifi_prank.mp3-31499054a11c4ac791b3b946870eaadc.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

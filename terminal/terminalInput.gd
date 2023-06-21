@@ -19,6 +19,10 @@ var insults = ["Nice try, Bozo", "What the heck?", "404: u suck", "ERROR: 1d10t 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$TextEdit.grab_focus()
+	
+	append_history("Click to interact", true)
+	append_history("Type like normal", true)
+	append_history("Hold ESC to quit", true)
 
 
 func _process(delta):

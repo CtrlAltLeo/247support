@@ -1,5 +1,7 @@
 extends Node2D
 
+export (int) var startingNode = 0
+
 export (NodePath) var TaskMasterPath
 export (NodePath) var PhonePath
 
@@ -19,8 +21,16 @@ export (NodePath) var  ManphonePath
 onready var Manphone = get_node(ManphonePath)
 
 func _ready():
-	get_child(0).on_deck()
-	get_child(0).on_deck()
+	
+	for i in range(startingNode):
+		print(i)
+		get_child(i).queue_free()
+	
+	get_child(startingNode).on_deck()
+	
+	print(get_child(startingNode).name)
+	
+	
 
 func new_task(id = 0, noCall = false):
 	
