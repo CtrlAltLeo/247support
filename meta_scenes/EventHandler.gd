@@ -20,6 +20,7 @@ onready var Manphone = get_node(ManphonePath)
 
 func _ready():
 	get_child(0).on_deck()
+	get_child(0).on_deck()
 
 func new_task(id = 0, noCall = false):
 	
@@ -76,6 +77,8 @@ func start_andy():
 
 func on_trigger_received(triggerName, cmd = []):
 	
+	print(triggerName)
+	
 	if get_child_count() == 0:
 		return
 	
@@ -130,3 +133,7 @@ func _on_terminalInput_andyover():
 
 func _on_ManPhone_arrival():
 	on_trigger_received("manphoneArrive")
+
+
+func _on_Phone_end_call():
+	on_trigger_received("hangupPhone")

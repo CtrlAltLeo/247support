@@ -4,7 +4,7 @@ var obj_id = "Event"
 
 onready var EventManager = get_parent().get_parent()
 
-export (int, "phonecall", "task", "error", "light", "door", "manphoneTP", "manphoneRunBetween", "manphoneAddPath", "taskNoCall", "andyLine", "andyStart") var eventType
+export (int, "phonecall", "task", "error", "light", "door", "manphoneTP", "manphoneRunBetween", "manphoneAddPath", "taskNoCall", "andyLine", "andyStart", "sceneChange") var eventType
 
 export (String) var phonecall_id
 export (int) var task_id
@@ -16,6 +16,8 @@ export (int) var ManphoneTarget = 0
 export (int) var ManphoneCurrentLocation = 0
 
 export (String) var andyLine
+
+export (String) var newscene
 
 #Complext shit for manphone
 
@@ -44,6 +46,8 @@ func do_event():
 			EventManager.add_andy_line(andyLine)
 		10:
 			EventManager.start_andy()
+		11:
+			get_tree().change_scene_to(load(newscene))
 			
 	queue_free()
 			

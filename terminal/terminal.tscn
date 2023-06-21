@@ -83,7 +83,6 @@ stream = ExtResource( 5 )
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
-autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="typing_over" from="AndyText" to="." method="_on_AndyText_typing_over"]

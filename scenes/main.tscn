@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://terminal/CommandProcessor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://models/computer/old_computer.glb" type="PackedScene" id=2]
@@ -7,7 +7,7 @@
 [ext_resource path="res://terminal/commands/bee.gd" type="Script" id=5]
 [ext_resource path="res://terminal/tasks/TaskMaster.tscn" type="PackedScene" id=6]
 [ext_resource path="res://terminal/_command.tscn" type="PackedScene" id=7]
-[ext_resource path="res://terminal/commands/test.gd" type="Script" id=8]
+[ext_resource path="res://sounds/lightSwitch.wav" type="AudioStream" id=8]
 [ext_resource path="res://terminal/commands/password_reset.gd" type="Script" id=9]
 [ext_resource path="res://shaders/vhstest.tres" type="Shader" id=10]
 [ext_resource path="res://icon.png" type="Texture" id=11]
@@ -26,8 +26,11 @@
 [ext_resource path="res://images/sticky1.png" type="Texture" id=24]
 [ext_resource path="res://terminal/commands/help.gd" type="Script" id=25]
 [ext_resource path="res://images/brimlessstikcer.png" type="Texture" id=26]
+[ext_resource path="res://StoryScripts/Trigger.tscn" type="PackedScene" id=27]
+[ext_resource path="res://sounds/officeAmbiance.mp3" type="AudioStream" id=28]
 [ext_resource path="res://meta_scenes/AudioManager.tscn" type="PackedScene" id=29]
 [ext_resource path="res://sounds/computeridle.mp3" type="AudioStream" id=30]
+[ext_resource path="res://StoryScripts/Event.tscn" type="PackedScene" id=31]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 10 )
@@ -154,12 +157,6 @@ keyword = "bumblebee"
 [node name="command_effects" parent="TerminalStack/CommandProcessor/monkey" index="0" instance=ExtResource( 4 )]
 script = ExtResource( 5 )
 
-[node name="test" parent="TerminalStack/CommandProcessor" instance=ExtResource( 7 )]
-keyword = "test"
-
-[node name="cmdtest" parent="TerminalStack/CommandProcessor/test" instance=ExtResource( 4 )]
-script = ExtResource( 8 )
-
 [node name="pswreset" parent="TerminalStack/CommandProcessor" instance=ExtResource( 7 )]
 keyword = "psreset"
 
@@ -169,7 +166,7 @@ TaskMasterPath = NodePath("../../../TaskMaster")
 TerminalPath = NodePath("../../../ViewportContainer/Viewport/terminalInput")
 
 [node name="removeacc" parent="TerminalStack/CommandProcessor" instance=ExtResource( 7 )]
-keyword = "rmvusr"
+keyword = "rmuser"
 
 [node name="command_effects" parent="TerminalStack/CommandProcessor/removeacc" instance=ExtResource( 4 )]
 script = ExtResource( 9 )
@@ -297,12 +294,24 @@ shadow_color = Color( 0.341176, 0.0392157, 0.0392157, 1 )
 spot_range = 16.6153
 spot_angle = 38.0939
 
+[node name="lightsfx" type="AudioStreamPlayer3D" parent="Objects/LightManager/left"]
+transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, -3.59989e-21, -4.37114e-08, 1, -4.37114e-08, 1.29637, -5.55653, 1.31447 )
+stream = ExtResource( 8 )
+unit_db = 10.0
+unit_size = 10.0
+
 [node name="right" type="SpotLight" parent="Objects/LightManager"]
 transform = Transform( 1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, -3.59989e-21, -4.37114e-08, -2.7808, 11.1121, -17.3926 )
 light_energy = 3.0
 shadow_color = Color( 0.341176, 0.0392157, 0.0392157, 1 )
 spot_range = 16.6153
 spot_angle = 38.0939
+
+[node name="lightsfx2" type="AudioStreamPlayer3D" parent="Objects/LightManager/right"]
+transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, -3.59989e-21, -4.37114e-08, 1, -4.37114e-08, -3.10668, -3.53975, 1.41998 )
+stream = ExtResource( 8 )
+unit_db = 10.0
+unit_size = 10.0
 
 [node name="EventHandler" parent="." instance=ExtResource( 15 )]
 TaskMasterPath = NodePath("../TerminalStack/TaskMaster")
@@ -311,6 +320,233 @@ TerminalPath = NodePath("../TerminalStack/ViewportContainer/Viewport/terminalInp
 EntryManagerPath = NodePath("../Objects/EntryManager")
 LightManagerPath = NodePath("../Objects/LightManager")
 ManphonePath = NodePath("../ManPhone")
+
+[node name="delayfor1-1call" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 3
+
+[node name="call" parent="EventHandler/delayfor1-1call" instance=ExtResource( 31 )]
+phonecall_id = "night1-1"
+
+[node name="task" parent="EventHandler/delayfor1-1call" instance=ExtResource( 31 )]
+eventType = 8
+phonecall_id = "night1-1"
+
+[node name="correctpassword" parent="EventHandler" instance=ExtResource( 27 )]
+cmd = "psreset"
+arg = "farthead"
+
+[node name="delayfor1-1call2" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 5
+
+[node name="Event" parent="EventHandler/delayfor1-1call2" instance=ExtResource( 31 )]
+phonecall_id = "night1-2"
+
+[node name="Phonetrig" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "hangupPhone"
+delay_time = 15
+
+[node name="delayforCall1" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 7
+
+[node name="Event" parent="EventHandler/delayforCall1" instance=ExtResource( 31 )]
+eventType = 1
+task_id = 1
+
+[node name="redPonyCMD" parent="EventHandler" instance=ExtResource( 27 )]
+cmd = "psreset"
+arg = "redpony4"
+
+[node name="lightDelay" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 3
+
+[node name="Event" parent="EventHandler/lightDelay" instance=ExtResource( 31 )]
+eventType = 3
+
+[node name="error" parent="EventHandler/lightDelay" instance=ExtResource( 31 )]
+eventType = 2
+
+[node name="delayForPrank" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 7
+cmd = "psreset"
+arg = "redpony4"
+
+[node name="Event" parent="EventHandler/delayForPrank" instance=ExtResource( 31 )]
+phonecall_id = "prank1"
+
+[node name="Phonetrig2" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "hangupPhone"
+delay_time = 15
+
+[node name="delayForAndy" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 15
+cmd = "psreset"
+arg = "redpony4"
+
+[node name="Event" parent="EventHandler/delayForAndy" instance=ExtResource( 31 )]
+eventType = 9
+phonecall_id = "prank1"
+andyLine = "Hello World"
+
+[node name="Event2" parent="EventHandler/delayForAndy" instance=ExtResource( 31 )]
+eventType = 9
+phonecall_id = "prank1"
+andyLine = "I need help."
+
+[node name="Event3" parent="EventHandler/delayForAndy" instance=ExtResource( 31 )]
+eventType = 9
+phonecall_id = "prank1"
+andyLine = "I need some.."
+
+[node name="Event4" parent="EventHandler/delayForAndy" instance=ExtResource( 31 )]
+eventType = 9
+phonecall_id = "prank1"
+andyLine = "Advanced permissions."
+
+[node name="Event5" parent="EventHandler/delayForAndy" instance=ExtResource( 31 )]
+eventType = 9
+phonecall_id = "prank1"
+andyLine = "Promote my account."
+
+[node name="Event6" parent="EventHandler/delayForAndy" instance=ExtResource( 31 )]
+eventType = 9
+phonecall_id = "prank1"
+andyLine = "My name is:"
+
+[node name="Event7" parent="EventHandler/delayForAndy" instance=ExtResource( 31 )]
+eventType = 9
+phonecall_id = "prank1"
+andyLine = "aboxer"
+
+[node name="Event8" parent="EventHandler/delayForAndy" instance=ExtResource( 31 )]
+eventType = 9
+phonecall_id = "prank1"
+andyLine = "thanks"
+
+[node name="Event9" parent="EventHandler/delayForAndy" instance=ExtResource( 31 )]
+eventType = 9
+phonecall_id = "prank1"
+andyLine = "\\(^_^)\\"
+
+[node name="andyStart" parent="EventHandler/delayForAndy" instance=ExtResource( 31 )]
+eventType = 10
+phonecall_id = "prank1"
+andyLine = "\\(^_^)\\"
+
+[node name="aBoxerTask" parent="EventHandler/delayForAndy" instance=ExtResource( 31 )]
+eventType = 8
+task_id = 3
+
+[node name="andyOver" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "andyOver"
+
+[node name="lights" parent="EventHandler/andyOver" instance=ExtResource( 31 )]
+eventType = 3
+side = 1
+
+[node name="aPswd" parent="EventHandler" instance=ExtResource( 27 )]
+cmd = "promote"
+arg = "aboxer"
+
+[node name="doorOpenDelay" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+
+[node name="doorLOpen" parent="EventHandler/doorOpenDelay" instance=ExtResource( 31 )]
+eventType = 4
+objectState = true
+
+[node name="taskDelay" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 5
+
+[node name="Event" parent="EventHandler/taskDelay" instance=ExtResource( 31 )]
+eventType = 1
+task_id = 2
+
+[node name="LLightON" parent="EventHandler/taskDelay" instance=ExtResource( 31 )]
+eventType = 3
+task_id = 2
+objectState = true
+
+[node name="soupShoesCMD" parent="EventHandler" instance=ExtResource( 27 )]
+cmd = "psreset"
+arg = "soupshoes"
+
+[node name="lightROn" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 5
+
+[node name="Event" parent="EventHandler/lightROn" instance=ExtResource( 31 )]
+eventType = 3
+side = 1
+objectState = true
+
+[node name="andy2" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "delay"
+delay_time = 5
+
+[node name="and1" parent="EventHandler/andy2" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "Hello World"
+
+[node name="and2" parent="EventHandler/andy2" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "Thanks for the help"
+
+[node name="and3" parent="EventHandler/andy2" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "I used to work here,"
+
+[node name="and4" parent="EventHandler/andy2" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "a while ago."
+
+[node name="and5" parent="EventHandler/andy2" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "it's an alright job."
+
+[node name="and6" parent="EventHandler/andy2" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "pays the bills."
+
+[node name="and7" parent="EventHandler/andy2" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "..."
+
+[node name="and8" parent="EventHandler/andy2" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "There is something"
+
+[node name="and9" parent="EventHandler/andy2" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "I should tell you."
+
+[node name="and10" parent="EventHandler/andy2" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "Do you ever feel"
+
+[node name="and11" parent="EventHandler/andy2" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "like you're being"
+
+[node name="and12" parent="EventHandler/andy2" instance=ExtResource( 31 )]
+eventType = 9
+andyLine = "watched?"
+
+[node name="and13" parent="EventHandler/andy2" instance=ExtResource( 31 )]
+eventType = 10
+andyLine = "watched?"
+
+[node name="andyOver2" parent="EventHandler" instance=ExtResource( 27 )]
+trigger = "andyOver"
+delay_time = 5
+
+[node name="surprisePhone" parent="EventHandler/andyOver2" instance=ExtResource( 31 )]
 
 [node name="ManPhone" parent="." instance=ExtResource( 20 )]
 EntryManagerPath = NodePath("../Objects/EntryManager")
@@ -357,18 +593,22 @@ stream = ExtResource( 30 )
 unit_db = -10.0
 autoplay = true
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource( 28 )
+volume_db = -5.0
+autoplay = true
+
 [connection signal="andyover" from="TerminalStack/ViewportContainer/Viewport/terminalInput" to="EventHandler" method="_on_terminalInput_andyover"]
 [connection signal="command" from="TerminalStack/ViewportContainer/Viewport/terminalInput" to="TerminalStack/CommandProcessor" method="_on_terminalInput_command"]
 [connection signal="command" from="TerminalStack/CommandProcessor" to="EventHandler" method="_on_CommandProcessor_command"]
 [connection signal="print_terminal" from="TerminalStack/CommandProcessor" to="TerminalStack/ViewportContainer/Viewport/terminalInput" method="append_history"]
 [connection signal="clear" from="TerminalStack/CommandProcessor/clear/clearcmd" to="TerminalStack/ViewportContainer/Viewport/terminalInput" method="clear_history"]
 [connection signal="bee" from="TerminalStack/CommandProcessor/monkey/command_effects" to="TerminalStack/ViewportContainer/Viewport/terminalInput" method="_on_command_effects_bee"]
-[connection signal="error" from="TerminalStack/CommandProcessor/test/cmdtest" to="TerminalStack/ViewportContainer/Viewport/terminalInput" method="start_error"]
-[connection signal="test_task" from="TerminalStack/CommandProcessor/test/cmdtest" to="TerminalStack/TaskMaster" method="add_task"]
 [connection signal="clicked" from="Objects/old_computer/computerClick" to="TerminalStack/ViewportContainer/Viewport/terminalInput" method="stop_error"]
 [connection signal="clicked" from="Objects/old_computer/computerClick" to="Objects/arm" method="hit"]
 [connection signal="clicked" from="Objects/old_computer/computerClick" to="EventHandler" method="_on_computerClick_clicked"]
 [connection signal="answer_phone" from="Objects/Phone" to="EventHandler" method="_on_Phone_answer_phone"]
+[connection signal="end_call" from="Objects/Phone" to="EventHandler" method="_on_Phone_end_call"]
 [connection signal="clicked" from="Objects/Phone/clickableArea" to="Objects/Phone" method="_on_clickableArea_clicked"]
 [connection signal="clicked" from="Objects/Phone/clickableArea" to="EventHandler" method="_on_clickableArea_clicked"]
 [connection signal="arrival" from="ManPhone" to="EventHandler" method="_on_ManPhone_arrival"]

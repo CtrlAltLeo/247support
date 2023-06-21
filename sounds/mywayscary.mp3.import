@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/mywayscary.mp3-f892895036eb57e0bd5369d79de30d6d.mp3str"
+
+[deps]
+
+source_file="res://sounds/mywayscary.mp3"
+dest_files=[ "res://.import/mywayscary.mp3-f892895036eb57e0bd5369d79de30d6d.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

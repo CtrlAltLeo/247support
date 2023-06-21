@@ -18,7 +18,7 @@ func _ready():
 	if _type == task_type.PASSWORD:
 		command = "psreset"
 	if _type == task_type.REMOVE:
-		command = "rmvusr"
+		command = "rmuser"
 	if _type ==  task_type.PROMOTE:
 		command = "promote"
 		

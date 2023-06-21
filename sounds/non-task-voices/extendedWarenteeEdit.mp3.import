@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/extendedWarenteeEdit.mp3-17d46c0b56a3e626d29f23f0a13247c9.mp3str"
+
+[deps]
+
+source_file="res://sounds/non-task-voices/extendedWarenteeEdit.mp3"
+dest_files=[ "res://.import/extendedWarenteeEdit.mp3-17d46c0b56a3e626d29f23f0a13247c9.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

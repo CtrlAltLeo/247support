@@ -12,6 +12,7 @@ export (String) var arg
 		
 func on_deck():
 	if trigger == "delay":
+		print("started new delay")
 		var t = Timer.new()
 		t.wait_time = delay_time
 		t.autostart = true

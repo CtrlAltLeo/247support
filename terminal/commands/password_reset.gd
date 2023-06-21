@@ -13,6 +13,14 @@ func effect(args):
 		if args[0] == "psreset":
 			terminal.append_history("ERROR!", true)
 			terminal.append_history("Use: psreset [user]", true)
+			
+		if args[0] == "rmuser":
+			terminal.append_history("ERROR!", true)
+			terminal.append_history("Use: rmuser [user]", true)
+			
+		if args[0] == "promote":
+			terminal.append_history("ERROR!", true)
+			terminal.append_history("Use: promote [user]", true)
 		
 		return
 	

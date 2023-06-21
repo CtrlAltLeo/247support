@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Soupshoes_edit.mp3-1c0fe5092944424ff5ddbe75614903fd.mp3str"
+
+[deps]
+
+source_file="res://sounds/phoneAudio/Soupshoes_edit.mp3"
+dest_files=[ "res://.import/Soupshoes_edit.mp3-1c0fe5092944424ff5ddbe75614903fd.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

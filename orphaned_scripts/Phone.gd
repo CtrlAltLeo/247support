@@ -16,7 +16,7 @@ func ring():
 	
 func ring_effects():
 	
-	if rings > 3:
+	if rings > 100:
 		ringing = false
 		emit_signal("dropped_call")
 		return
@@ -43,7 +43,7 @@ func pick_up():
 		return
 	if phone_active:
 		end_call()
-		
+		pass
 	else:
 		pass
 

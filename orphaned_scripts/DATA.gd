@@ -5,19 +5,22 @@ var tickets = [
 	
 	{"phoneAudio":"dummy",
 	"command":0,
-	"args":"stink"},
+	"args":"farthead"},
 	
-	{"phoneAudio":"res://sounds/phoneAudio/call0.mp3",
-	"command":2,
-	"args":"toenail1234"},
-	
-	{"phoneAudio":"res://sounds/phoneAudio/call1.mp3",
+	{"phoneAudio":"res://sounds/phoneAudio/RedPony4_edit.mp3",
 	"command":0,
-	"args":"chiptech"},
+	"args":"redpony4"},
 	
-	{"phoneAudio":"res://sounds/phoneAudio/call1.mp3",
+	{"phoneAudio":"res://sounds/phoneAudio/Soupshoes_edit.mp3",
+	"command":0,
+	"args":"soupshoes"},
+	
+	{"phoneAudio":"res://sounds/phoneAudio/Soupshoes_edit.mp3",
 	"command":2,
-	"args":"stink"}
+	"args":"aboxer"}
+	
+	
+	
 	
 ]
 
@@ -25,11 +28,8 @@ enum ENTRY {DOORLEFT, DOORRIGHT, MIDDLE, DESKFRONT, DESKLEFT, DESKRIGHT, PLAYER,
 
 var phoneAudio = {
 	
-	"welcome": "res://sounds/non-task-voices/banana-phone.mp3",
+	"myWay":"res://sounds/mywayscary.mp3",
 	"night1-1":"res://sounds/non-task-voices/night1-1.mp3",
 	"night1-2":"res://sounds/non-task-voices/night1-2.mp3",
-	"prank1":"res://sounds/non-task-voices/prank1.mp3",
-	"prank2":"res://sounds/non-task-voices/prank2.mp3",
-	"breathing":"res://sounds/breathing.mp3"
-	
+	"prank1":"res://sounds/non-task-voices/extendedWarenteeEdit.mp3"
 }
