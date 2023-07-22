@@ -22,13 +22,10 @@ onready var Manphone = get_node(ManphonePath)
 
 func _ready():
 	
-	for i in range(startingNode):
-		print(i)
-		get_child(i).queue_free()
 	
-	get_child(startingNode).on_deck()
+	get_child(0).get_child(startingNode).on_deck()
 	
-	print(get_child(startingNode).name)
+
 	
 	
 
@@ -89,13 +86,15 @@ func on_trigger_received(triggerName, cmd = []):
 	
 	print(triggerName)
 	
-	if get_child_count() == 0:
+	var SceneCollection = get_child(0)
+	
+	if SceneCollection.get_child_count() == 0:
 		return
 	
-	if get_child(0).obj_id == "Trigger":
-		if get_child(0).trigger == triggerName:
+	if SceneCollection.get_child(0).obj_id == "Trigger":
+		if SceneCollection.get_child(0).trigger == triggerName:
 			
-			var trig = get_child(0)
+			var trig = SceneCollection.get_child(0)
 			
 			if triggerName == "command":
 				if trig.cmd == cmd[0]:
@@ -111,14 +110,14 @@ func on_trigger_received(triggerName, cmd = []):
 				pass
 			
 			
-			for Event in get_child(0).get_children():
+			for Event in SceneCollection.get_child(0).get_children():
 				if "obj_id" in Event:
 					Event.do_event()
 				
 			trig.queue_free()
 			
-			if get_child_count() > 1:
-				get_child(1).on_deck()
+			if SceneCollection.get_child_count() > 1:
+				SceneCollection.get_child(1).on_deck()
 				
 		
 #Computer Whack

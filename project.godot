@@ -26,7 +26,6 @@ DATA="*res://orphaned_scripts/DATA.gd"
 
 window/size/width=1920
 window/size/height=1024
-window/size/fullscreen=true
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 

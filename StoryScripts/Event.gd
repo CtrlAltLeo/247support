@@ -2,7 +2,7 @@ extends Node2D
 
 var obj_id = "Event"
 
-onready var EventManager = get_parent().get_parent()
+onready var EventManager = get_parent().get_parent().get_parent()
 
 export (int, "phonecall", "task", "error", "light", "door", "manphoneTP", "manphoneRunBetween", "manphoneAddPath", "taskNoCall", "andyLine", "andyStart", "sceneChange") var eventType
 

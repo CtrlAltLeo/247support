@@ -17,7 +17,7 @@ func on_deck():
 		t.autostart = true
 		t.one_shot = true
 		t.connect("timeout", t, "queue_free")
-		t.connect("timeout", get_parent(), "trigger_timeout")
+		t.connect("timeout", get_parent().get_parent(), "trigger_timeout")
 		self.add_child(t)
 		
 		
